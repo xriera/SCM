@@ -18,7 +18,7 @@ public class ControladorCita {
     }  
    public static boolean agregar(Cita cita) {
        
-            String sql = "insert into cita values(" +
+            String sql = "insert into citas values(" +
                       cita.getId() + ", '" + 
                       cita.getFecha() + "', '" +
                       cita.getHora() + "', '" +

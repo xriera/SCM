@@ -46,17 +46,42 @@ public class MainConsulta {
                  
       
      
-     Cita c1=new Cita(1, new Date(), new Date(), "prueba1", m, p, "A");
+    // Cita c1=new Cita(1, new Date(), new Date(), "prueba1", m, p, "A");
         
-Consulta c6=new Consulta(2, 2, "prueba1", "d1", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta1", "cada 8 horas", c1);
+//Consulta c6=new Consulta(3, 3, "prueba1", "d1", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta1", "cada 8 horas");
        
 //agregar consulta
 //ControladorConsulta.agregarConsulta(c6);
 
-ControladorConsulta.buscarConsulta(65);
+                 
+    //buscar  --> probar con el metodo del riera q falta      
+    // Consulta consulta=ControladorConsulta.buscar(1);
+     
+                 
+                
+    //modificar 
+   //  Cita c1=new Cita(4, new Date(), new Date(), "prueba1", m, p, "A");
+    //Consulta c7=new Consulta(3, c1, "cita3", "cita3", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta 3", "cada hora");
+     //ControladorConsulta.modificar(3, c7);
 
 
+        // listar
+       //   ControladorConsulta.listar();
+        //for( Consulta c:ControladorConsulta.listar()){
+          // System.out.println("lista"+c.toString());
+            
+        
+                 
+                 
+                   //eliminar        
+     //   ControladorConsulta.eliminar(2);
+                 
+        }
+   
+         
+       
 
+        
     }  
     
-}
+

@@ -6,8 +6,8 @@ package scm.modelo;
  */
 public class Consulta {
     
-    private int idCita;
-    private int idConsulta;
+    private int id;
+    private Cita cita;
     private String sintomas;
     private String diagnostico;
     private float presionArterial;
@@ -19,11 +19,11 @@ public class Consulta {
     private float indiceMasa;
     private String receta;
     private String indicaciones;
-    private Cita cita;
+   
 
-    public Consulta(int idCita, int idConsulta, String sintomas, String diagnostico, float presionArterial, float frecuenciaCardiaca, float frecuenciaRespiratoria, float temperaturaCorporal, float peso, float altura, float indiceMasa, String receta, String indicaciones, Cita cita) {
-        this.idCita = idCita;
-        this.idConsulta = idConsulta;
+    public Consulta(int id, Cita cita, String sintomas, String diagnostico, float presionArterial, float frecuenciaCardiaca, float frecuenciaRespiratoria, float temperaturaCorporal, float peso, float altura, float indiceMasa, String receta, String indicaciones) {
+        this.id = id;
+        this.cita = cita;
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.presionArterial = presionArterial;
@@ -35,23 +35,23 @@ public class Consulta {
         this.indiceMasa = indiceMasa;
         this.receta = receta;
         this.indicaciones = indicaciones;
+       
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int idCita) {
+        this.id = idCita;
+    }
+
+    public Cita getCita() {
+        return cita;
+    }
+
+    public void setCita(Cita cita) {
         this.cita = cita;
-    }
-
-    public int getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
-    }
-
-    public int getIdConsulta() {
-        return idConsulta;
-    }
-
-    public void setIdConsulta(int idConsulta) {
-        this.idConsulta = idConsulta;
     }
 
     public String getSintomas() {
@@ -142,18 +142,16 @@ public class Consulta {
         this.indicaciones = indicaciones;
     }
 
-    public Cita getCita() {
-        return cita;
-    }
-
-    public void setCita(Cita cita) {
-        this.cita = cita;
-    }
-    
-    
-    
-
     private float calcularIndiceMasa() {
         return peso / altura;
     }
+
+    @Override
+    public String toString() {
+        return "Consulta{" + "id=" + id + ", cita=" + cita + ", sintomas=" + sintomas + ", diagnostico=" + diagnostico + ", presionArterial=" + presionArterial + ", frecuenciaCardiaca=" + frecuenciaCardiaca + ", frecuenciaRespiratoria=" + frecuenciaRespiratoria + ", temperaturaCorporal=" + temperaturaCorporal + ", peso=" + peso + ", altura=" + altura + ", indiceMasa=" + indiceMasa + ", receta=" + receta + ", indicaciones=" + indicaciones + '}';
+    }
+    
+    
+    
+    
 }

@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/**
 package scm.modelo;
 
 import org.junit.After;
@@ -16,6 +18,11 @@ import static org.junit.Assert.*;
  *
  * @author wilson
  */
+
+/**
+ * 
+ * 
+ 
 public class ConsultaTest {
     
     public ConsultaTest() {
@@ -41,6 +48,7 @@ public class ConsultaTest {
      * Test of getId method, of class Consulta.
      */
     @Test
+   /**
     public void testGetId() {
         System.out.println("getId");
         Consulta instance = null;
@@ -50,10 +58,12 @@ public class ConsultaTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of setId method, of class Consulta.
      */
+    
+    /**
     @Test
     public void testSetId() {
         System.out.println("setId");
@@ -67,6 +77,8 @@ public class ConsultaTest {
     /**
      * Test of getConsulta method, of class Consulta.
      */
+    
+    /**
     @Test
     public void testGetConsulta() {
         System.out.println("getConsulta");
@@ -81,6 +93,8 @@ public class ConsultaTest {
     /**
      * Test of setConsulta method, of class Consulta.
      */
+    
+    /**
     @Test
     public void testSetConsulta() {
         System.out.println("setConsulta");
@@ -94,6 +108,8 @@ public class ConsultaTest {
     /**
      * Test of getSintomas method, of class Consulta.
      */
+    
+    /**
     @Test
     public void testGetSintomas() {
         System.out.println("getSintomas");
@@ -108,6 +124,9 @@ public class ConsultaTest {
     /**
      * Test of setSintomas method, of class Consulta.
      */
+    
+    /**
+    
     @Test
     public void testSetSintomas() {
         System.out.println("setSintomas");
@@ -122,6 +141,8 @@ public class ConsultaTest {
      * Test of getDiagnostico method, of class Consulta.
      */
     @Test
+    
+    /**
     public void testGetDiagnostico() {
         System.out.println("getDiagnostico");
         Consulta instance = null;
@@ -135,6 +156,8 @@ public class ConsultaTest {
     /**
      * Test of setDiagnostico method, of class Consulta.
      */
+    
+    /**
     @Test
     public void testSetDiagnostico() {
         System.out.println("setDiagnostico");
@@ -149,6 +172,7 @@ public class ConsultaTest {
      * Test of getPresionArterial method, of class Consulta.
      */
     @Test
+    /**
     public void testGetPresionArterial() {
         System.out.println("getPresionArterial");
         Consulta instance = null;
@@ -163,6 +187,8 @@ public class ConsultaTest {
      * Test of setPresionArterial method, of class Consulta.
      */
     @Test
+    
+    /**
     public void testSetPresionArterial() {
         System.out.println("setPresionArterial");
         float presionArterial = 0.0F;
@@ -176,6 +202,8 @@ public class ConsultaTest {
      * Test of getFrecuenciaCardiaca method, of class Consulta.
      */
     @Test
+    
+    /**
     public void testGetFrecuenciaCardiaca() {
         System.out.println("getFrecuenciaCardiaca");
         Consulta instance = null;
@@ -190,6 +218,7 @@ public class ConsultaTest {
      * Test of setFrecuenciaCardiaca method, of class Consulta.
      */
     @Test
+    /**
     public void testSetFrecuenciaCardiaca() {
         System.out.println("setFrecuenciaCardiaca");
         float frecuenciaCardiaca = 0.0F;
@@ -203,6 +232,9 @@ public class ConsultaTest {
      * Test of getFrecuenciaRespiratoria method, of class Consulta.
      */
     @Test
+    
+    /**
+  
     public void testGetFrecuenciaRespiratoria() {
         System.out.println("getFrecuenciaRespiratoria");
         Consulta instance = null;
@@ -217,6 +249,7 @@ public class ConsultaTest {
      * Test of setFrecuenciaRespiratoria method, of class Consulta.
      */
     @Test
+    /**
     public void testSetFrecuenciaRespiratoria() {
         System.out.println("setFrecuenciaRespiratoria");
         float frecuenciaRespiratoria = 0.0F;
@@ -230,6 +263,7 @@ public class ConsultaTest {
      * Test of getTemperaturaCorporal method, of class Consulta.
      */
     @Test
+    /**
     public void testGetTemperaturaCorporal() {
         System.out.println("getTemperaturaCorporal");
         Consulta instance = null;
@@ -244,6 +278,7 @@ public class ConsultaTest {
      * Test of setTemperaturaCorporal method, of class Consulta.
      */
     @Test
+    /**
     public void testSetTemperaturaCorporal() {
         System.out.println("setTemperaturaCorporal");
         float temperaturaCorporal = 0.0F;
@@ -257,6 +292,7 @@ public class ConsultaTest {
      * Test of getPeso method, of class Consulta.
      */
     @Test
+    /**
     public void testGetPeso() {
         System.out.println("getPeso");
         Consulta instance = null;
@@ -271,6 +307,7 @@ public class ConsultaTest {
      * Test of setPeso method, of class Consulta.
      */
     @Test
+    /**
     public void testSetPeso() {
         System.out.println("setPeso");
         float peso = 0.0F;
@@ -284,6 +321,7 @@ public class ConsultaTest {
      * Test of getAltura method, of class Consulta.
      */
     @Test
+    /**
     public void testGetAltura() {
         System.out.println("getAltura");
         Consulta instance = null;
@@ -298,6 +336,7 @@ public class ConsultaTest {
      * Test of setAltura method, of class Consulta.
      */
     @Test
+    /**
     public void testSetAltura() {
         System.out.println("setAltura");
         float altura = 0.0F;
@@ -311,6 +350,7 @@ public class ConsultaTest {
      * Test of getIndiceMasa method, of class Consulta.
      */
     @Test
+    /**
     public void testGetIndiceMasa() {
         System.out.println("getIndiceMasa");
         Consulta instance = null;
@@ -325,6 +365,7 @@ public class ConsultaTest {
      * Test of getReceta method, of class Consulta.
      */
     @Test
+    /**
     public void testGetReceta() {
         System.out.println("getReceta");
         Consulta instance = null;
@@ -339,6 +380,7 @@ public class ConsultaTest {
      * Test of setReceta method, of class Consulta.
      */
     @Test
+    /**
     public void testSetReceta() {
         System.out.println("setReceta");
         String receta = "";
@@ -352,6 +394,7 @@ public class ConsultaTest {
      * Test of getIndicaciones method, of class Consulta.
      */
     @Test
+    /**
     public void testGetIndicaciones() {
         System.out.println("getIndicaciones");
         Consulta instance = null;
@@ -366,13 +409,22 @@ public class ConsultaTest {
      * Test of setIndicaciones method, of class Consulta.
      */
     @Test
-    public void testSetIndicaciones() {
-        System.out.println("setIndicaciones");
-        String indicaciones = "";
-        Consulta instance = null;
-        instance.setIndicaciones(indicaciones);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
-}
+    /**
+     * 
+     */
+    
+  //  /**
+   // public void testSetIndicaciones() {
+     //   System.out.println("setIndicaciones");
+       // String indicaciones = "";
+        //Consulta instance = null;
+        //instance.setIndicaciones(indicaciones);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    //}
+
+
+ 
+// }
+

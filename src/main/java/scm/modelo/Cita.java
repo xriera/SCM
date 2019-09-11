@@ -82,6 +82,11 @@ public class Cita {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Cita{" + "id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", motivo=" + motivo + ", medico=" + medico + ", paciente=" + paciente + ", estado=" + estado + '}';
+    }
     
     
     

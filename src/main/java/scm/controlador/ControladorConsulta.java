@@ -41,8 +41,13 @@ public class ControladorConsulta {
             System.out.println("insertando...");
             return true;
         
-    
     }
     
+     public static void buscarConsulta(int idConsulta){
+         String sql="SELECT * FROM  consultas where idconsulta ="+idConsulta+")";
+         System.out.println(sql);
+         
+     }
+     
      
 }

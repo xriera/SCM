@@ -9,6 +9,9 @@ import scm.modelo.Usuario;
  */
 public class MenuSeleccion extends javax.swing.JFrame {
 
+    
+ 
+    
     public MenuSeleccion() {
         initComponents();
         super.setTitle("Sistema de Citas Medicas - Grupo 1");
@@ -28,6 +31,7 @@ public class MenuSeleccion extends javax.swing.JFrame {
         btPacientes = new javax.swing.JButton();
         btCerrarSesion = new javax.swing.JButton();
         btCambiarClave = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -67,6 +71,13 @@ public class MenuSeleccion extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Gestion de Citas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,13 +92,15 @@ public class MenuSeleccion extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btMedicos, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btPacientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(btCambiarClave, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
+                        .addGap(142, 142, 142)
                         .addComponent(btCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,8 +114,10 @@ public class MenuSeleccion extends javax.swing.JFrame {
                     .addComponent(btPacientes)
                     .addComponent(btCambiarClave))
                 .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btCerrarSesion)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -118,6 +133,7 @@ public class MenuSeleccion extends javax.swing.JFrame {
         String rol = ConexionDB.getUsuarioSesion().getRol();
         if (rol.equals("admin")) {
             new VentanaGestionUsuarios().setVisible(true);
+            
             this.dispose();
         } else if (rol.equals("medico") || rol.equals("recepcionista")) {
             
@@ -137,11 +153,21 @@ public class MenuSeleccion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btCambiarClaveActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+      // new VentanaGestionCitas().setVisible(true);
+       
+        
+      
+   
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCambiarClave;
     private javax.swing.JButton btCerrarSesion;
     private javax.swing.JButton btMedicos;
     private javax.swing.JButton btPacientes;
     private javax.swing.JButton btUsuarios;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

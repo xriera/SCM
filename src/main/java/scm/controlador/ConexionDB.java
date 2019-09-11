@@ -9,8 +9,18 @@ import scm.modelo.Usuario;
 
 /**
  *
- * @author wilson
+ * @author wilson 
+ * 
+ * 
+ * 
  */
+
+
+/**
+ * 
+ * @Pruba Daniel Amay
+ */
+
 public class ConexionDB {
     
     private static Usuario usuarioSesion;
@@ -20,7 +30,7 @@ public class ConexionDB {
         String url =  "jdbc:postgresql://localhost:5432/scmdb"; 
         try {
             Class.forName("org.postgresql.Driver");
-            conexion = DriverManager.getConnection(url, "postgres", "postgres");
+            conexion = DriverManager.getConnection(url, "postgres", "cuenca");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Ocurrio un error: " + e.getMessage());
         }

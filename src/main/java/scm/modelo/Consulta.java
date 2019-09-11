@@ -7,7 +7,7 @@ package scm.modelo;
 public class Consulta {
     
     private int id;
-    private Consulta consulta;
+    private Cita cita;
     private String sintomas;
     private String diagnostico;
     private float presionArterial;
@@ -20,12 +20,12 @@ public class Consulta {
     private String receta;
     private String indicaciones;
 
-    public Consulta(int id, Consulta consulta, String sintomas, String diagnostico,
+    public Consulta(int id, Cita cita, String sintomas, String diagnostico,
                     float presionArterial, float frecuenciaCardiaca,
                     float frecuenciaRespiratoria, float temperaturaCorporal,
                     float peso, float altura, String receta, String indicaciones) {
         this.id = id;
-        this.consulta = consulta;
+        this.cita = cita;
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.presionArterial = presionArterial;
@@ -47,12 +47,12 @@ public class Consulta {
         this.id = id;
     }
 
-    public Consulta getConsulta() {
-        return consulta;
+    public Cita getCita() {
+        return cita;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setCita(Cita cita) {
+        this.cita = cita;
     }
 
     public String getSintomas() {

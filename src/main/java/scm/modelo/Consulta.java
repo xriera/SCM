@@ -7,7 +7,7 @@ package scm.modelo;
 public class Consulta {
     
     private int id;
-    private Consulta consulta;
+    private Cita cita;
     private String sintomas;
     private String diagnostico;
     private float presionArterial;
@@ -16,16 +16,16 @@ public class Consulta {
     private float temperaturaCorporal;
     private float peso;
     private float altura;
-    private float indiceMasa;
+    private float indiceMasaCorporal;
     private String receta;
     private String indicaciones;
 
-    public Consulta(int id, Consulta consulta, String sintomas, String diagnostico,
+    public Consulta(int id, Cita cita, String sintomas, String diagnostico,
                     float presionArterial, float frecuenciaCardiaca,
                     float frecuenciaRespiratoria, float temperaturaCorporal,
                     float peso, float altura, String receta, String indicaciones) {
         this.id = id;
-        this.consulta = consulta;
+        this.cita = cita;
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.presionArterial = presionArterial;
@@ -34,7 +34,7 @@ public class Consulta {
         this.temperaturaCorporal = temperaturaCorporal;
         this.peso = peso;
         this.altura = altura;
-        this.indiceMasa = calcularIndiceMasa();
+        this.indiceMasaCorporal = calcularIndiceMasaCorporal();
         this.receta = receta;
         this.indicaciones = indicaciones;
     }
@@ -47,12 +47,12 @@ public class Consulta {
         this.id = id;
     }
 
-    public Consulta getConsulta() {
-        return consulta;
+    public Cita getCita() {
+        return cita;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setCita(Cita cita) {
+        this.cita = cita;
     }
 
     public String getSintomas() {
@@ -135,11 +135,11 @@ public class Consulta {
         this.indicaciones = indicaciones;
     }
 
-    public float getIndiceMasa() {
-        return indiceMasa;
+    public float getIndiceMasaCorporal() {
+        return indiceMasaCorporal;
     }
 
-    private float calcularIndiceMasa() {
+    private float calcularIndiceMasaCorporal() {
         return peso / altura;
     }
 }

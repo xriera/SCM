@@ -5,14 +5,7 @@
  */
 package scm.controlador;
 
-import java.text.SimpleDateFormat;
-import static scm.controlador.ControladorPersona.buscar;
-import static scm.controlador.ControladorUsuario.buscar;
 import scm.modelo.Consulta;
-import scm.modelo.Medico;
-import scm.modelo.Paciente;
-import scm.modelo.Persona;
-import scm.modelo.Usuario;
 
 /**
  *
@@ -24,25 +17,21 @@ public class ControladorConsulta {
     
      public static boolean agregarConsulta(Consulta consulta) {
             String sql = "insert into consultas values(" +
-                      consulta.getIdCita()+ ", '" + 
-                      consulta.getIdConsulta() + "', '" +
+                      consulta.getId() + "," +
+                      consulta.getCita().getId() + "," +
                       consulta.getSintomas() + "', '" +
                       consulta.getDiagnostico() + "', '" +
-                      consulta.getPresionArterial()+ "', '" +
-                      consulta.getFrecuenciaCardiaca()+ "', '" +
-                      consulta.getFrecuenciaRespiratoria()+ "', '" +
-                      consulta.getTemperaturaCorporal()+ "', '" +
-                      consulta.getPeso()+ "', '" +
-                      consulta.getAltura()+ "', '" +
-                      consulta.getIndiceMasa()+ "', '" +
+                      consulta.getPresionArterial()+ "', " +
+                      consulta.getFrecuenciaCardiaca()+ "," +
+                      consulta.getFrecuenciaRespiratoria()+ "," +
+                      consulta.getTemperaturaCorporal()+ "," +
+                      consulta.getPeso() + "," +
+                      consulta.getAltura() + "," +
+                      consulta.getIndiceMasaCorporal()+ ", '" +
                       consulta.getReceta()+ "', '" +
                       consulta.getIndicaciones()+ "')";
             ConexionDB.ejecutarSentencia(sql);
             System.out.println("insertando...");
             return true;
-        
-    
     }
-    
-     
 }

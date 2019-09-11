@@ -5,6 +5,8 @@
  */
 package scm.controlador;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import scm.modelo.Cita;
 
 /**
@@ -17,15 +19,24 @@ public class ControladorCita {
         return ConexionDB.generarID(sql);
     }  
    public static boolean agregar(Cita cita) {
-       
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
+        Date fecha = cita.getFecha();
+        String cadena = formato.format(fecha);
+        
+         SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm:ss");
+        Date hora = cita.getHora();
+        String cadenaHora = formato1.format(hora);
+        
             String sql = "insert into citas values(" +
                       cita.getId() + ", '" + 
-                      cita.getFecha() + "', '" +
-                      cita.getHora() + "', '" +
+                      cadena + "', '" +
+                      cadenaHora + "', '" +
                       cita.getMotivo() + "', '" +
-                      cita.getMedico() + "', '" +
-                      cita.getPaciente() + "')";
+                      cita.getMedico().getId() + "', '" +
+                      cita.getPaciente().getId() + "', '" +
+                      cita.getEstado()+ "')";
             ConexionDB.ejecutarSentencia(sql);
+            System.out.println("insertando......");
             return true;
         
     }

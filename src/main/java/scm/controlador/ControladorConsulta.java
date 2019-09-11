@@ -103,7 +103,7 @@ public class ControladorConsulta {
     
     
     public static List<Consulta>listar(){
-    
+       
         List<Consulta> lista=new ArrayList();
         String sql="select * from consultas"; 
         

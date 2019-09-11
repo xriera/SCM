@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author wilson
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({scm.controlador.ControladorUsuarioTest.class, scm.controlador.ConexionDBTest.class, scm.controlador.ControladorPersonaTest.class})
+@Suite.SuiteClasses({ControladorPersonaTest.class, ConexionDBTest.class, ControladorUsuarioTest.class})
 public class ControladorSuite {
 
     @BeforeClass

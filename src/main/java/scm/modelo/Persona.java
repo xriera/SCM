@@ -17,7 +17,7 @@ public abstract class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -49,7 +49,7 @@ public abstract class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
+  
     @Override
     public String toString() {
         return cedula + " | " + nombre + " " + apellido;

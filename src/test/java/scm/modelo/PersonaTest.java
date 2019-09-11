@@ -158,12 +158,4 @@ public class PersonaTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    public class PersonaImpl extends Persona {
-
-        public PersonaImpl() {
-            super(0, "", "", "");
-        }
-    }
-    
 }

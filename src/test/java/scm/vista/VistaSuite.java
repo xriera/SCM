@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
  * @author wilson
  */
 @org.junit.runner.RunWith(org.junit.runners.Suite.class)
-@org.junit.runners.Suite.SuiteClasses({VentanaGestionUsuariosTest.class, MenuSeleccionTest.class, InicioSesionTest.class, VentanaCambioClaveTest.class})
+@   Suite.SuiteClasses({InicioSesionTest.class, MenuSeleccionTest.class, VentanaCambioClaveTest.class, VentanaGestionUsuariosTest.class})
 public class VistaSuite {
 
     @org.junit.BeforeClass

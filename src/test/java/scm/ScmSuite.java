@@ -11,13 +11,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import scm.controlador.ControladorSuite;
+import scm.modelo.ModeloSuite;
+import scm.vista.VistaSuite;
 
 /**
  *
  * @author wilson
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({scm.vista.VistaSuite.class, scm.imagenes.ImagenesSuite.class, scm.modelo.ModeloSuite.class, scm.controlador.ControladorSuite.class})
+@Suite.SuiteClasses({VistaSuite.class, ControladorSuite.class, ModeloSuite.class})
 public class ScmSuite {
 
     @BeforeClass

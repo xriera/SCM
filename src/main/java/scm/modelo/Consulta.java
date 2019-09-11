@@ -54,7 +54,7 @@ public class Consulta {
     public void setConsulta(Consulta consulta) {
         this.consulta = consulta;
     }
-    
+
     public String getSintomas() {
         return sintomas;
     }
@@ -119,10 +119,6 @@ public class Consulta {
         this.altura = altura;
     }
 
-    public float getIndiceMasa() {
-        return indiceMasa;
-    }
-    
     public String getReceta() {
         return receta;
     }
@@ -138,7 +134,11 @@ public class Consulta {
     public void setIndicaciones(String indicaciones) {
         this.indicaciones = indicaciones;
     }
-    
+
+    public float getIndiceMasa() {
+        return indiceMasa;
+    }
+
     private float calcularIndiceMasa() {
         return peso / altura;
     }

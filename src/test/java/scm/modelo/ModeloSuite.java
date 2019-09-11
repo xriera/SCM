@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author wilson
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({scm.modelo.MedicoTest.class, scm.modelo.ConsultaTest.class, scm.modelo.PersonaTest.class, scm.modelo.CitaTest.class, scm.modelo.UsuarioTest.class, scm.modelo.PacienteTest.class})
+@Suite.SuiteClasses({MedicoTest.class, PersonaTest.class, UsuarioTest.class, PacienteTest.class, CitaTest.class, ConsultaTest.class})
 public class ModeloSuite {
 
     @BeforeClass

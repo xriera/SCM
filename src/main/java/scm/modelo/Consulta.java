@@ -16,7 +16,7 @@ public class Consulta {
     private float temperaturaCorporal;
     private float peso;
     private float altura;
-    private float indiceMasa;
+    private float indiceMasaCorporal;
     private String receta;
     private String indicaciones;
 
@@ -34,7 +34,7 @@ public class Consulta {
         this.temperaturaCorporal = temperaturaCorporal;
         this.peso = peso;
         this.altura = altura;
-        this.indiceMasa = calcularIndiceMasa();
+        this.indiceMasaCorporal = calcularIndiceMasaCorporal();
         this.receta = receta;
         this.indicaciones = indicaciones;
     }
@@ -135,11 +135,11 @@ public class Consulta {
         this.indicaciones = indicaciones;
     }
 
-    public float getIndiceMasa() {
-        return indiceMasa;
+    public float getIndiceMasaCorporal() {
+        return indiceMasaCorporal;
     }
 
-    private float calcularIndiceMasa() {
+    private float calcularIndiceMasaCorporal() {
         return peso / altura;
     }
 }

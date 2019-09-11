@@ -224,7 +224,7 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        
+        new VentanaListarUsuarios().setVisible(true);
     }//GEN-LAST:event_btListarActionPerformed
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed

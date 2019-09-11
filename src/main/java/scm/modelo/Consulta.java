@@ -6,8 +6,8 @@ package scm.modelo;
  */
 public class Consulta {
     
-    private int id;
-    private Consulta consulta;
+    private int idCita;
+    private int idConsulta;
     private String sintomas;
     private String diagnostico;
     private float presionArterial;
@@ -19,13 +19,11 @@ public class Consulta {
     private float indiceMasa;
     private String receta;
     private String indicaciones;
+    private Cita cita;
 
-    public Consulta(int id, Consulta consulta, String sintomas, String diagnostico,
-                    float presionArterial, float frecuenciaCardiaca,
-                    float frecuenciaRespiratoria, float temperaturaCorporal,
-                    float peso, float altura, String receta, String indicaciones) {
-        this.id = id;
-        this.consulta = consulta;
+    public Consulta(int idCita, int idConsulta, String sintomas, String diagnostico, float presionArterial, float frecuenciaCardiaca, float frecuenciaRespiratoria, float temperaturaCorporal, float peso, float altura, float indiceMasa, String receta, String indicaciones, Cita cita) {
+        this.idCita = idCita;
+        this.idConsulta = idConsulta;
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.presionArterial = presionArterial;
@@ -34,25 +32,26 @@ public class Consulta {
         this.temperaturaCorporal = temperaturaCorporal;
         this.peso = peso;
         this.altura = altura;
-        this.indiceMasa = calcularIndiceMasa();
+        this.indiceMasa = indiceMasa;
         this.receta = receta;
         this.indicaciones = indicaciones;
+        this.cita = cita;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCita() {
+        return idCita;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
-    public Consulta getConsulta() {
-        return consulta;
+    public int getIdConsulta() {
+        return idConsulta;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setIdConsulta(int idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
     public String getSintomas() {
@@ -119,6 +118,14 @@ public class Consulta {
         this.altura = altura;
     }
 
+    public float getIndiceMasa() {
+        return indiceMasa;
+    }
+
+    public void setIndiceMasa(float indiceMasa) {
+        this.indiceMasa = indiceMasa;
+    }
+
     public String getReceta() {
         return receta;
     }
@@ -135,9 +142,16 @@ public class Consulta {
         this.indicaciones = indicaciones;
     }
 
-    public float getIndiceMasa() {
-        return indiceMasa;
+    public Cita getCita() {
+        return cita;
     }
+
+    public void setCita(Cita cita) {
+        this.cita = cita;
+    }
+    
+    
+    
 
     private float calcularIndiceMasa() {
         return peso / altura;

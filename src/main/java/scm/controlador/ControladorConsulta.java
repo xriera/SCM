@@ -21,7 +21,7 @@ public class ControladorConsulta {
 
     public static boolean agregarConsulta(Consulta consulta) {
         if (buscar(consulta.getId()) != null) {
-            String sql = "insert into consultas values("
+            String sql = "insert into consultas values(" 
                 + consulta.getId() + ", '"
                 + consulta.getCita() + "', '"
                 + consulta.getSintomas() + "', '"

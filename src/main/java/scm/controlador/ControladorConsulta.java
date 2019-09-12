@@ -15,7 +15,7 @@ import scm.modelo.Consulta;
 
 /**
  *
- * @author DELL
+ * @author Daniel Amay
  */
 public class ControladorConsulta {
 

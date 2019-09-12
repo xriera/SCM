@@ -8,7 +8,6 @@ package scm.controlador;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import scm.modelo.Cita;
-
 /**
  *
  * @author xavier
@@ -54,8 +53,8 @@ public class ControladorCita {
             return true;
         
     }
-           public static boolean eliminar(int  id) {
-       
+     
+       public static boolean eliminar(int  id) {    
             String sql = "delete from citas where id = '" + id + "'";
             ConexionDB.ejecutarSentencia(sql);
             return true;

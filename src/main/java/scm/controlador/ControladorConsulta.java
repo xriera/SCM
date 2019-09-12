@@ -44,6 +44,14 @@ public class ControladorConsulta {
 
     }
 
+    
+    
+    /**
+     * 
+     * @param id Consulta
+     * @return  Consulta consulta
+     */
+    
     public static Consulta buscar(int id) {
         Consulta consulta = null;
         String sql = "SELECT * FROM  consultas where idconsulta =" + id + ")";

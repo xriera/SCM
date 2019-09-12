@@ -14,8 +14,11 @@ import scm.modelo.Cita;
 import scm.modelo.Consulta;
 
 /**
- *
+ *Metodo para agregar consulta
  * @author Daniel Amay
+ * @return  Consulta consulta
+ * 
+ * 
  */
 public class ControladorConsulta {
 
@@ -47,7 +50,7 @@ public class ControladorConsulta {
     
     
     /**
-     * 
+     * Metodo para Buscar Consulta
      * @param id Consulta
      * @return  Consulta consulta
      */

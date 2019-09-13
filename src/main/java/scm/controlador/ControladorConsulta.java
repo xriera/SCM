@@ -31,7 +31,7 @@ public class ControladorConsulta {
    
    
     /**
-     * 
+     * Agrega Consulta corregido()
      * @param consulta
      * @return true si se ingreso una consulta
      */
@@ -114,7 +114,7 @@ public class ControladorConsulta {
     
 
     /**
-     * Metodo para modificar una consulta
+     * Metodo para modificar una consulta (corregido)
      * @param id
      * @param consulta Consulta
      * @return true en caso de la modificacion sea correcta
@@ -146,9 +146,13 @@ public class ControladorConsulta {
     }    
     
     
+    /**
+     * Meotod para listar (corregido)
+     * @return lista de consultas
+     */
+    
     public static List<Consulta> listar() {
-
-        List<Consulta> lista = new ArrayList();
+ List<Consulta> lista = new ArrayList();
         String sql = "select * from consultas";
 
         try {
@@ -176,9 +180,14 @@ public class ControladorConsulta {
             System.out.println("Error: " + e.getMessage());
         }
         return lista;
+       
     }
 
-
+/**
+ * Metodo para eliminar consulta (comprobar)
+ * @param id consulta
+ * @return true si se elimino
+ */
     public static boolean eliminar(int id){
     
        String sql="delete from consultas where id=" + id + ""; 

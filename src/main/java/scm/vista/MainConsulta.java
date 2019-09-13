@@ -57,12 +57,12 @@ public class MainConsulta {
                  
       
      //insertar
-   // Cita cita=new Cita(4, new Date(), new Date(), "prueba1", m, p, "A");
+  // Cita cita=new Cita(4, new Date(), new Date(), "prueba1", m, p, "A");
         
   //Consulta consulta=new Consulta(4, cita, "prueba1", "d1", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta1", "cada 8 horas");
         
      //agregar consulta3
-  //   ControladorConsulta.agregarConsulta(consulta);
+  //  ControladorConsulta.agregarConsulta(consulta);
   //  System.out.println("IMC="+consulta.calcularIndiceMasa()); 
 
                  
@@ -73,21 +73,22 @@ public class MainConsulta {
                 
     //modificar 
     
-    //  Cita c2=new Cita(3, null, null, "motivo3", m, p, null);
-   //Consulta c7=new Consulta(3, c2, "cita55", "cita33", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta 33", "cada 2 horas -");
-    //ControladorConsulta.modificar(1, c7);
+   //   Cita c2=new Cita(4, null, null, "motivo3", m, p, null);
+  // Consulta c7=new Consulta(4, c2, "cita55", "cita33", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, indiceMasa, "receta 33", "cada 2 horas -");
+  //  ControladorConsulta.modificar(4, c7);
+    
 
 
         // listar
        //   ControladorConsulta.listar();
-       for( Consulta c:ControladorConsulta.listar()){
-         System.out.println("lista"+c.toString());
+    //   for( Consulta c:ControladorConsulta.listar()){
+    //     System.out.println("lista"+c.toString());
             
-       }
+    //   }
                  
                  
                    //eliminar        
-      //ControladorConsulta.eliminar(3);
+    //  ControladorConsulta.eliminar(4);
                  
                 // ControladorConsulta cc=new ControladorConsulta();
                  

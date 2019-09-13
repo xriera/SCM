@@ -31,7 +31,7 @@ public class ControladorConsulta {
    
    
     /**
-     * Agrega Consulta
+     * Agrega Consulta corregido()
      * @param consulta
      * @return true si se ingreso una consulta
      */
@@ -114,7 +114,7 @@ public class ControladorConsulta {
     
 
     /**
-     * Metodo para modificar una consulta
+     * Metodo para modificar una consulta (corregido)
      * @param id
      * @param consulta Consulta
      * @return true en caso de la modificacion sea correcta

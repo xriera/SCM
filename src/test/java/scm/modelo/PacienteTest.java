@@ -26,7 +26,7 @@ public class PacienteTest {
     @Before
     public void setUp() {
         fecha = Calendar.getInstance().getTime();
-        instance = new Paciente(0, "", "", "", ' ', fecha, "", "", "", "");
+        instance = new Paciente(0, "", "", "", '-', fecha, "", "", "", "");
     }
     
     /**
@@ -34,11 +34,10 @@ public class PacienteTest {
      */
     @Test
     public void testGetSexo() {
-        char expResult = ' ';
+        char expResult = '-';
         char result = instance.getSexo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**

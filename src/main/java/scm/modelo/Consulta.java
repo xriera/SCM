@@ -16,14 +16,12 @@ public class Consulta {
     private float temperaturaCorporal;
     private float peso;
     private float altura;
-    private float indiceMasaCorporal;
+    private float indiceMasa;
     private String receta;
     private String indicaciones;
+   
 
-    public Consulta(int id, Cita cita, String sintomas, String diagnostico,
-                    float presionArterial, float frecuenciaCardiaca,
-                    float frecuenciaRespiratoria, float temperaturaCorporal,
-                    float peso, float altura, String receta, String indicaciones) {
+    public Consulta(int id, Cita cita, String sintomas, String diagnostico, float presionArterial, float frecuenciaCardiaca, float frecuenciaRespiratoria, float temperaturaCorporal, float peso, float altura, float indiceMasa, String receta, String indicaciones) {
         this.id = id;
         this.cita = cita;
         this.sintomas = sintomas;
@@ -34,17 +32,18 @@ public class Consulta {
         this.temperaturaCorporal = temperaturaCorporal;
         this.peso = peso;
         this.altura = altura;
-        this.indiceMasaCorporal = calcularIndiceMasaCorporal();
+        this.indiceMasa = indiceMasa;
         this.receta = receta;
         this.indicaciones = indicaciones;
+       
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idCita) {
+        this.id = idCita;
     }
 
     public Cita getCita() {
@@ -119,6 +118,14 @@ public class Consulta {
         this.altura = altura;
     }
 
+    public float getIndiceMasa() {
+        return indiceMasa;
+    }
+
+    public void setIndiceMasa(float indiceMasa) {
+        this.indiceMasa = indiceMasa;
+    }
+
     public String getReceta() {
         return receta;
     }
@@ -135,11 +142,17 @@ public class Consulta {
         this.indicaciones = indicaciones;
     }
 
-    public float getIndiceMasaCorporal() {
-        return indiceMasaCorporal;
+    //Calculo IMC
+    public   float calcularIndiceMasa() {
+        return (float) (peso / (altura*altura));
     }
 
-    private float calcularIndiceMasaCorporal() {
-        return peso / altura;
+    @Override
+    public String toString() {
+        return "Consulta{" + "id=" + id + ", cita=" + cita + ", sintomas=" + sintomas + ", diagnostico=" + diagnostico + ", presionArterial=" + presionArterial + ", frecuenciaCardiaca=" + frecuenciaCardiaca + ", frecuenciaRespiratoria=" + frecuenciaRespiratoria + ", temperaturaCorporal=" + temperaturaCorporal + ", peso=" + peso + ", altura=" + altura + ", indiceMasa=" + indiceMasa + ", receta=" + receta + ", indicaciones=" + indicaciones + '}';
     }
+    
+    
+    
+    
 }

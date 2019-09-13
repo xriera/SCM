@@ -47,7 +47,7 @@ public class ControladorPersonaTest {
     @Test
     public void testModificar() {
         String tipo = "medico";
-        boolean expResult = true;
+        boolean expResult = false;
         boolean result = ControladorPersona.modificar(persona, tipo);
         assertEquals(expResult, result);
     }

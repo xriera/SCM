@@ -65,13 +65,5 @@ public class PersonaTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of toString method, of class Persona.
-     */
-    @Test
-    public void testToString() {
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-    }
+  
 }

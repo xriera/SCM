@@ -22,6 +22,7 @@ public class ConexionDBTest {
    
     @Before
     public void setUp() {
+         ConexionDB.setUsuarioSesion(null);
     }
 
     /**
@@ -29,8 +30,8 @@ public class ConexionDBTest {
      */
     @Test
     public void testEjecutarSentencia() {
-        boolean expResult = false;
-        boolean result = ConexionDB.ejecutarSentencia(null);
+        boolean expResult = true;
+        boolean result = ConexionDB.ejecutarSentencia("");
         assertEquals(expResult, result);
     }
 
@@ -40,7 +41,7 @@ public class ConexionDBTest {
     @Test
     public void testEjecutarConsulta() {
         ResultSet expResult = null;
-        ResultSet result = ConexionDB.ejecutarConsulta(null);
+        ResultSet result = ConexionDB.ejecutarConsulta("");
         assertEquals(expResult, result);
     }
 
@@ -52,7 +53,5 @@ public class ConexionDBTest {
         Usuario expResult = null;
         Usuario result = ConexionDB.getUsuarioSesion();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

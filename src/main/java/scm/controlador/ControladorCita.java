@@ -13,6 +13,7 @@ import scm.modelo.Cita;
  * @author xavier
  */
 public class ControladorCita {
+    
    public static int generarID() {
         String sql = "select max(id) from citas";
         return ConexionDB.generarID(sql);

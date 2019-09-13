@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package scm.controlador;
+
+import java.util.Date;
+import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import scm.modelo.Cita;
+import scm.modelo.Medico;
+import scm.modelo.Paciente;
+import scm.modelo.Usuario;
+
+/**
+ *
+ * @author xavier
+ */
+public class ControladorCitaTest {
+    
+    public ControladorCitaTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+
+      Usuario u = new Usuario( 1, "Doctor", "cuenca","Doctor" );
+      Paciente p = new Paciente (1, null, "Juan", "Amay", 'h', null, null, "paute", null, null);       
+      Medico m = new Medico(1, "0106805591", "xavier", "riera", "doctor", "paute", "prueba", u);
+    /**
+     * Test of agregar method, of class ControladorCita.
+     */
+    @Test
+    public void testAgregar() {
+        System.out.println("agregar");
+        Cita cita = new  Cita(2, new Date(), new Date(), "gripe", m, p, "activo");
+        boolean expResult = true;
+        boolean result = ControladorCita.agregar(cita);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+       if(expResult==true){
+           System.out.println("Usuario Ingresar");
+       }else{       
+        fail("The test case is a prototype.");
+       }
+    }
+
+    /**
+     * Test of modificar method, of class ControladorCita.
+     */
+    @Test
+    public void testModificar() {
+        System.out.println("modificar");
+        int idCita = 1;
+        Cita cita = new Cita(1, new Date(), new Date(), "embarazo", m, p, "activo");
+        boolean expResult = ControladorCita.modificar(1, cita);;
+        boolean result = ControladorCita.modificar(1, cita);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        if(result == true){
+            System.out.println("actualizado correctamente");
+        }else{
+            fail("The test case is a prototype.");
+        }
+    }
+
+    /**
+     * Test of eliminar method, of class ControladorCita.
+     */
+    @Test
+    public void testEliminar() {
+        System.out.println("eliminar");
+        int id = 1;
+        boolean expResult = ControladorCita.eliminar(id);
+        boolean result = ControladorCita.eliminar(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        if(result == true){
+            System.out.println("Eliminado correctamente");
+        }else{
+            fail("The test case is a prototype.");
+        }
+    }
+
+    
+}

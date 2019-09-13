@@ -44,7 +44,7 @@ public class ControladorCita {
             return true;
         
     }
-       public static boolean modificar(String nombre, Cita cita) {
+       public static boolean modificar(int idCita, Cita cita) {
        
             String sql = "update citas set " + 
                          "fecha = '" + cita.getFecha() + "'," +
@@ -65,7 +65,7 @@ public class ControladorCita {
             return true;
         }
        
-           public static Cita buscar(int idCita) {
+          public static Cita buscar(int idCita) {
         Cita cita = null;
         String sql = "select * from citas where id = '" + idCita + "'";
         try {
@@ -79,13 +79,14 @@ public class ControladorCita {
                 int idmedico = resultado.getInt("idmedico");
                 String idpaciente = resultado.getString("idpaciente");
                 String estado  = resultado.getString("estado");
-                cita = new Cita(id, fecha, hora, motivo, medico, paciente, estado);
+               // cita = new Cita(id, fecha, hora, motivo, medico, paciente, estado);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return cita;
     }
+       
        public static List<Cita> listar() {
         List<Cita> lista = new ArrayList();
         String sql = "select * from cita";
@@ -99,7 +100,7 @@ public class ControladorCita {
                 String idmedico = resultado.getString("idmedico");
                 String idpaciente = resultado.getString("idpaciente");
                 String estado  = resultado.getString("estado");
-                lista.add(new Cita(id, fecha, hora, motivo, medico, paciente, estado));
+              //  lista.add(new Cita(id, fecha, hora, motivo, medico, paciente, estado));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

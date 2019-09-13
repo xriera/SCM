@@ -15,13 +15,13 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
     
     public VentanaGestionUsuarios() {
         initComponents();
+        accion = "";
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
@@ -42,21 +42,12 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
         txtClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SCM - Gestión de usuarios");
         setResizable(false);
-
-        jLabel1.setFont(new java.awt.Font("Fira Sans Semi-Light", 0, 24)); // NOI18N
-        jLabel1.setText("      Gestión de usuarios del Sistema");
-        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jLabel2.setText("Usuario:");
-
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("ID:");
 
@@ -199,20 +190,16 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,7 +207,26 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        buscar();
+        Usuario usuario = ControladorUsuario.buscar(txtBusqueda.getText());
+        if (usuario != null) {
+            txtID.setText(String.valueOf(usuario.getId()));
+            txtNombre.setText(usuario.getNombre());
+            txtClave.setText(usuario.getClave());
+            if (usuario.getRol().equals("admin")) {
+                cbRol.setSelectedIndex(0);
+            } else if (usuario.getRol().equals("medico")) {
+                cbRol.setSelectedIndex(1);
+            } else if (usuario.getRol().equals("recepcionista")) {
+                cbRol.setSelectedIndex(2);
+            }
+            usuarioAnterior = txtNombre.getText();
+            accion = "busqueda";
+        } else {
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Operacion fallida:\n" +
+                                              "El usuario no existe!");
+        }
+        txtBusqueda.setText("");
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
@@ -260,19 +266,12 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         txtBusqueda.setText("");
+        desactivarCampos();
         if (accion.equals("busqueda")) {
-            txtNombre.setEnabled(false);
-            txtClave.setEnabled(false);
-            cbRol.setEnabled(false);
             btEliminar.setEnabled(false);
-            txtNombre.setText("Por eliminar....");
-            txtClave.setText("Por eliminar....");
             accion = "eliminar";
         } else {
             limpiarCampos();
-            txtNombre.setEnabled(false);
-            txtClave.setEnabled(false);
-            cbRol.setEnabled(false);
             btEliminar.setEnabled(true);
             accion = "";
             JOptionPane.showMessageDialog(null, "Accion cancelada:\n" +
@@ -310,7 +309,6 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
             }
         } else if (accion.equals("modificar")) {
             if (ControladorUsuario.modificar(usuarioAnterior,new Usuario(id, nombre, clave, rol))) {
-                System.out.println("modificó");
                 limpiarCampos();
                 btModificar.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" +
@@ -318,49 +316,19 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
             }
         } else if (accion.equals("eliminar")) {
             if (ControladorUsuario.eliminar(usuarioAnterior)) {
-                System.out.println("eliminó");
                 limpiarCampos();
                 btEliminar.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" +
                                               "El usuario ha sido eliminado!");
             }
         }
-        txtNombre.setEnabled(false);
-        txtClave.setEnabled(false);
-        cbRol.setEnabled(false);
+        desactivarCampos();
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed
         new MenuSeleccion().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btRegresarActionPerformed
-
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-        buscar();
-    }//GEN-LAST:event_txtBusquedaActionPerformed
-
-    private void buscar() {
-        Usuario usuario = ControladorUsuario.buscar(txtBusqueda.getText());
-        if (usuario != null) {
-            txtID.setText(String.valueOf(usuario.getId()));
-            txtNombre.setText(usuario.getNombre());
-            txtClave.setText(usuario.getClave());
-            if (usuario.getRol().equals("admin")) {
-                cbRol.setSelectedIndex(0);
-            } else if (usuario.getRol().equals("medico")) {
-                cbRol.setSelectedIndex(1);
-            } else if (usuario.getRol().equals("recepcionista")) {
-                cbRol.setSelectedIndex(2);
-            }
-            usuarioAnterior = txtNombre.getText();
-            accion = "busqueda";
-        } else {
-            limpiarCampos();
-            JOptionPane.showMessageDialog(null, "Operacion fallida:\n" +
-                                              "El usuario no existe!");
-        }
-        txtBusqueda.setText("");
-    }
     
     private void limpiarCampos() {
         txtBusqueda.setText("");
@@ -370,6 +338,17 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
         cbRol.setSelectedIndex(0);
     }
 
+    public void activarCampos() {
+        txtNombre.setEnabled(true);
+        txtClave.setEnabled(true);
+        cbRol.setEnabled(true);
+    }
+    
+    public void desactivarCampos() {
+        txtNombre.setEnabled(false);
+        txtClave.setEnabled(false);
+        cbRol.setEnabled(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;
@@ -379,7 +358,6 @@ public class VentanaGestionUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btModificar;
     private javax.swing.JButton btRegresar;
     private javax.swing.JComboBox<String> cbRol;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

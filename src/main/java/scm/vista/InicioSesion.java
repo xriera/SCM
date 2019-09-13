@@ -28,6 +28,7 @@ public class InicioSesion extends javax.swing.JFrame {
         txtClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Citas Médicas");
         setResizable(false);
 
         jLabel1.setText("Usuario:");

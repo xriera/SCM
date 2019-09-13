@@ -24,7 +24,7 @@ public class ControladorPersona {
     }
     
     public static boolean agregar(Persona persona, String tipo) {
-        if(buscar(persona.getId(), tipo) == null) {
+        if(buscar(persona.getCedula(), tipo) == null) {
             String sql = "insert into personas values(" + 
                           persona.getId() + ",'" +
                           persona.getCedula() + "', '" +
@@ -60,7 +60,7 @@ public class ControladorPersona {
     }
     
     public static boolean modificar(Persona persona, String tipo) {
-        if(buscar(persona.getId(), tipo) == null) {
+        if(buscar(persona.getCedula(), tipo) == null) {
             String sql = "update personas set " + 
                          "cedula = '" + persona.getCedula() + "'," +
                          "nombre = '" + persona.getNombre() + "'," +
@@ -95,13 +95,13 @@ public class ControladorPersona {
         return false;
     }
     
-    public static Persona buscar(int id, String tipo) {
+    public static Persona buscar(String cedula, String tipo) {
         Persona persona = null;
-        String sql = "select * from personas where id = " + id;
+        String sql = "select * from personas where cedula = '" + cedula + "'";
         try {
             ResultSet resultadoPersona = ConexionDB.ejecutarConsulta(sql);
             if (resultadoPersona.next()) {
-                String cedula = resultadoPersona.getString("cedula");
+                int id = resultadoPersona.getInt("id");
                 String nombre = resultadoPersona.getString("nombre");
                 String apellido = resultadoPersona.getString("apellido");
                 if (tipo.equals("medico")) {
@@ -109,9 +109,9 @@ public class ControladorPersona {
                     ResultSet resultadoMedico = ConexionDB.ejecutarConsulta(sql);
                     resultadoMedico.next();
                     String direccion = resultadoMedico.getString("direccion");
-                    String email = resultadoMedico.getString("mail");
+                    String email = resultadoMedico.getString("email");
                     String especialidad = resultadoMedico.getString("especialidad");
-                    Usuario usuario = ControladorUsuario.buscar(nombre + apellido);
+                    Usuario usuario = ControladorUsuario.buscar(cedula);
                     persona = new Medico(id, cedula, nombre, apellido, direccion, email, especialidad, usuario);
                 } else if (tipo.equals("paciente")){
                     sql = "select * from pacientes where id = " + id;
@@ -129,21 +129,24 @@ public class ControladorPersona {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error buscar: " + e.getMessage());
+            e.printStackTrace();
         } catch (ParseException e) {
             System.out.println("Error de fecha: " + e.getMessage());
         }
         return persona;
     }
     
-    public static boolean eliminar(int id, String tipo) {
-        if (buscar(id, tipo) != null) {
-            String sqlA = "delete from personas where id = " + id;
+    public static boolean eliminar(String cedula, String tipo) {
+        Persona persona = buscar(cedula, tipo);
+        if (persona != null) {
+            String sqlA = "delete from personas where cedula = '" + cedula + "'";
             String sqlB = "";
             if (tipo.equals("medico")) {
-                sqlB = "select * from medicos where id = " + id;
+                sqlB = "delete from medicos where id = " + persona.getId();
+                ControladorUsuario.eliminar(cedula);
             } else {
-                sqlB = "select * from pacientes where id = " + id;
+                sqlB = "delete from pacientes where id = " + persona.getId();
             }
             ConexionDB.ejecutarSentencia(sqlA);
             ConexionDB.ejecutarConsulta(sqlB);
@@ -155,13 +158,15 @@ public class ControladorPersona {
     public static List<Medico> listarMedicos() {
         List<Medico> lista = new ArrayList();
         try {
-            for(int i = 1; i < generarID(); i++) {
-                Medico medico = (Medico) buscar(i, "medico");
+            String sql = "select cedula from personas";;
+            ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
+            for(int i = 1; resultado.next(); i++) {
+                Medico medico = (Medico) buscar(resultado.getString("cedula"), "medico");
                 if (medico != null) {
                     lista.add(medico);
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return lista;
@@ -170,13 +175,15 @@ public class ControladorPersona {
     public static List<Paciente> listarPacientes() {
         List<Paciente> lista = new ArrayList();
         try {
-            for(int i = 1; i < generarID(); i++) {
-                Paciente paciente = (Paciente) buscar(i, "paciente");
+            String sql = "select cedula from personas";;
+            ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
+            for(int i = 1; resultado.next(); i++) {
+                Paciente paciente = (Paciente) buscar(resultado.getString("cedula"), "paciente");
                 if (paciente != null) {
                     lista.add(paciente);
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return lista;

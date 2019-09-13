@@ -30,7 +30,7 @@ public class ConexionDB {
         String url =  "jdbc:postgresql://localhost:5432/scmdb"; 
         try {
             Class.forName("org.postgresql.Driver");
-            conexion = DriverManager.getConnection(url, "postgres", "cuenca");
+            conexion = DriverManager.getConnection(url, "postgres", "postgres");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Ocurrio un error: " + e.getMessage());
         }
@@ -44,7 +44,7 @@ public class ConexionDB {
             sentencia.executeUpdate(sql);
             conexion.close();
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error sentencia: " + e.getMessage());
         }
     }
     
@@ -57,7 +57,7 @@ public class ConexionDB {
             resultado.setFetchDirection(ResultSet.FETCH_FORWARD);
             conexion.close();
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error consulta: " + e.getMessage());
         }
         return resultado;
     }

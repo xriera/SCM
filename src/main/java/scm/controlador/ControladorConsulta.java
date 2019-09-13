@@ -184,7 +184,7 @@ public class ControladorConsulta {
     }
 
 /**
- * Metodo para eliminar consulta (corregido)
+ * Metodo para eliminar consulta (comprobar)
  * @param id consulta
  * @return true si se elimino
  */

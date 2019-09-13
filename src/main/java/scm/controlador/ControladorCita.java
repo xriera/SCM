@@ -8,7 +8,6 @@ package scm.controlador;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import scm.modelo.Cita;
-
 /**
  *
  * @author xavier
@@ -36,9 +35,29 @@ public class ControladorCita {
                       cita.getPaciente().getId() + "', '" +
                       cita.getEstado()+ "')";
             ConexionDB.ejecutarSentencia(sql);
-            System.out.println("insertando......");
+             System.out.println("insertando...");
             return true;
         
     }
+       public static boolean modificar(String nombre, Cita cita) {
+       
+            String sql = "update citas set " + 
+                         "fecha = '" + cita.getFecha() + "'," +
+                         "hora = '" + cita.getHora() +"' " +  
+                         "motivo = '" + cita.getMotivo() +"' " +
+                         "idmedico = '" + cita.getMedico().getId() +"' " +
+                         "idpaciente = '" + cita.getPaciente().getId() +"' " +
+                         "where id = " + cita.getId();
+            ConexionDB.ejecutarSentencia(sql);
+             System.out.println("Modificando...");
+            return true;
+        
+    }
+     
+       public static boolean eliminar(int  id) {    
+            String sql = "delete from citas where id = '" + id + "'";
+            ConexionDB.ejecutarSentencia(sql);
+            return true;
+        }
    
 }

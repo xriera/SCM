@@ -31,7 +31,7 @@ public class ControladorConsulta {
    
    
     /**
-     * 
+     * Agrega Consulta
      * @param consulta
      * @return true si se ingreso una consulta
      */

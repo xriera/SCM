@@ -146,6 +146,11 @@ public class ControladorConsulta {
     }    
     
     
+    /**
+     * Meotod para listar (corregido)
+     * @return lista de consultas
+     */
+    
     public static List<Consulta> listar() {
 
         List<Consulta> lista = new ArrayList();

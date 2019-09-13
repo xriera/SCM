@@ -183,7 +183,11 @@ public class ControladorConsulta {
         return lista;
     }
 
-
+/**
+ * Metodo para eliminar consulta (corregido)
+ * @param id consulta
+ * @return true si se elimino
+ */
     public static boolean eliminar(int id){
     
        String sql="delete from consultas where id=" + id + ""; 

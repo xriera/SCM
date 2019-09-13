@@ -37,15 +37,17 @@ public class ConexionDB {
         return conexion;
     }
     
-    public static void ejecutarSentencia(String sql) {
+    public static boolean ejecutarSentencia(String sql) {
         Connection conexion = conectar();
         try {
             Statement sentencia = conexion.createStatement();
             sentencia.executeUpdate(sql);
             conexion.close();
+            return true;
         } catch (SQLException e) {
             System.out.println("Error sentencia: " + e.getMessage());
         }
+        return false;
     }
     
     public static ResultSet ejecutarConsulta(String sql) {

@@ -152,8 +152,7 @@ public class ControladorConsulta {
      */
     
     public static List<Consulta> listar() {
-
-        List<Consulta> lista = new ArrayList();
+ List<Consulta> lista = new ArrayList();
         String sql = "select * from consultas";
 
         try {
@@ -181,6 +180,7 @@ public class ControladorConsulta {
             System.out.println("Error: " + e.getMessage());
         }
         return lista;
+       
     }
 
 /**

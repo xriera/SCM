@@ -18,33 +18,32 @@ import static org.junit.Assert.*;
  * @author xavier
  */
 public class CitaTest {
-    
+
     Cita instance;
     Medico medico;
     Paciente paciente;
+
     public CitaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         instance = new Cita(0, new Date(), new Date(), "", null, null, "");
         medico = new Medico(1, "", "", "", "", "", "", null);
         paciente = new Paciente(2, "", "", "", '-', new Date(), "", "", "", "");
     }
-    
+
     @After
     public void tearDown() {
     }
-
-
 
     /**
      * Test of getFecha method, of class Cita.
@@ -55,7 +54,7 @@ public class CitaTest {
         Date result = instance.getFecha();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       
+
     }
 
     /**
@@ -68,7 +67,7 @@ public class CitaTest {
         Date result = instance.getHora();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       
+
     }
 
     /**
@@ -77,16 +76,13 @@ public class CitaTest {
     @Test
     public void testGetMotivo() {
         System.out.println("getMotivo");
-        
+
         String expResult = "";
         String result = instance.getMotivo();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       
+
     }
-
-   
-
 
     /**
      * Test of getEstado method, of class Cita.
@@ -101,5 +97,5 @@ public class CitaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
 }

@@ -14,12 +14,12 @@ import static org.junit.Assert.*;
  * @author wilson
  */
 public class MedicoTest {
-    
+
     Medico instance;
-    
+
     public MedicoTest() {
     }
-    
+
     @Before
     public void setUp() {
         instance = new Medico(0, "", "", "", "", "", "", null);
@@ -44,7 +44,7 @@ public class MedicoTest {
         String result = instance.getEmail();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getEspecialidad method, of class Medico.
      */

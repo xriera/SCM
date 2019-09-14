@@ -16,19 +16,19 @@ import static org.junit.Assert.*;
  * @author wilson
  */
 public class PacienteTest {
-    
+
     Date fecha;
     Paciente instance;
-    
+
     public PacienteTest() {
     }
-    
+
     @Before
     public void setUp() {
         fecha = Calendar.getInstance().getTime();
         instance = new Paciente(0, "", "", "", '-', fecha, "", "", "", "");
     }
-    
+
     /**
      * Test of getSexo method, of class Paciente.
      */
@@ -37,7 +37,7 @@ public class PacienteTest {
         char expResult = '-';
         char result = instance.getSexo();
         assertEquals(expResult, result);
-       
+
     }
 
     /**

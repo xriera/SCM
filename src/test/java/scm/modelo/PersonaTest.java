@@ -14,12 +14,12 @@ import static org.junit.Assert.*;
  * @author wilson
  */
 public class PersonaTest {
-    
+
     Persona instance;
-    
+
     public PersonaTest() {
     }
-    
+
     @Before
     public void setUp() {
         instance = new Medico(0, "", "", "", "", "", "", null);
@@ -65,5 +65,4 @@ public class PersonaTest {
         assertEquals(expResult, result);
     }
 
-  
 }

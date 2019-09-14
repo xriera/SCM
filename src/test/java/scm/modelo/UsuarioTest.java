@@ -17,43 +17,40 @@ import static org.junit.Assert.*;
  * @author Daniel Amay
  */
 public class UsuarioTest {
-    
-    
+
     Usuario instance;
-    
+
     public UsuarioTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        
-        instance=new Usuario(0, "", "", "");
+
+        instance = new Usuario(0, "", "", "");
     }
-    
+
     @After
     public void tearDown() {
     }
-
-  
 
     /**
      * Test of getNombre method, of class Usuario.
      */
     @Test
     public void testGetNombre() {
-      
+
         String expResult = "";
         String result = instance.getNombre();
         assertEquals(expResult, result);
-     
+
     }
 
     /**
@@ -64,21 +61,19 @@ public class UsuarioTest {
         String expResult = "";
         String result = instance.getClave();
         assertEquals(expResult, result);
-        
-    }
 
-  
+    }
 
     /**
      * Test of getRol method, of class Usuario.
      */
     @Test
     public void testGetRol() {
-        
+
         String expResult = "";
         String result = instance.getRol();
         assertEquals(expResult, result);
-       
+
     }
-    
+
 }

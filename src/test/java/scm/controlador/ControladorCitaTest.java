@@ -6,7 +6,6 @@
 package scm.controlador;
 
 import java.util.Date;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,46 +22,46 @@ import scm.modelo.Usuario;
  * @author xavier
  */
 public class ControladorCitaTest {
-    
+
     public ControladorCitaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
+    Usuario u = new Usuario(1, "Doctor", "cuenca", "Doctor");
+    Paciente p = new Paciente(1, null, "Juan", "Amay", 'h', null, null, "paute", null, null);
+    Medico m = new Medico(1, "0106805591", "xavier", "riera", "doctor", "paute", "prueba", u);
 
-      Usuario u = new Usuario( 1, "Doctor", "cuenca","Doctor" );
-      Paciente p = new Paciente (1, null, "Juan", "Amay", 'h', null, null, "paute", null, null);       
-      Medico m = new Medico(1, "0106805591", "xavier", "riera", "doctor", "paute", "prueba", u);
     /**
      * Test of agregar method, of class ControladorCita.
      */
     @Test
     public void testAgregar() {
         System.out.println("agregar");
-        Cita cita = new  Cita(2, new Date(), new Date(), "gripe", m, p, "activo");
+        Cita cita = new Cita(2, new Date(), new Date(), "gripe", m, p, "activo");
         boolean expResult = true;
         boolean result = ControladorCita.agregar(cita);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       if(expResult==true){
-           System.out.println("Usuario Ingresar");
-       }else{       
-        fail("The test case is a prototype.");
-       }
+        if (expResult == true) {
+            System.out.println("Usuario Ingresar");
+        } else {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -71,15 +70,14 @@ public class ControladorCitaTest {
     @Test
     public void testModificar() {
         System.out.println("modificar");
-        int idCita = 1;
         Cita cita = new Cita(1, new Date(), new Date(), "embarazo", m, p, "activo");
-        boolean expResult = ControladorCita.modificar(1, cita);;
-        boolean result = ControladorCita.modificar(1, cita);
+        boolean expResult = ControladorCita.modificar(cita);;
+        boolean result = ControladorCita.modificar(cita);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        if(result == true){
+        if (result == true) {
             System.out.println("actualizado correctamente");
-        }else{
+        } else {
             fail("The test case is a prototype.");
         }
     }
@@ -95,12 +93,11 @@ public class ControladorCitaTest {
         boolean result = ControladorCita.eliminar(id);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        if(result == true){
+        if (result == true) {
             System.out.println("Eliminado correctamente");
-        }else{
+        } else {
             fail("The test case is a prototype.");
         }
     }
 
-    
 }

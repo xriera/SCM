@@ -7,9 +7,7 @@ package scm.controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import scm.modelo.Cita;
 import scm.modelo.Consulta;
@@ -39,7 +37,7 @@ public class ControladorConsulta {
   
  
  
-    public static boolean agregarConsulta(Consulta consulta) {
+    public static boolean agregar(Consulta consulta) {
        
       // if (buscar(consulta.getId()) != null) {
             String sql = "insert into consultas values(" 

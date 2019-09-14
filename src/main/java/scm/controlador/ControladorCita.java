@@ -27,7 +27,7 @@ public class ControladorCita {
         Date fecha = cita.getFecha();
         String cadenaFecha = formato.format(fecha);
         
-         SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm:ss");
         Date hora = cita.getHora();
         String cadenaHora = formato1.format(hora);
         
@@ -36,8 +36,8 @@ public class ControladorCita {
                       cadenaFecha + "', '" +
                       cadenaHora + "', '" +
                       cita.getMotivo() + "', '" +
-                      cita.getMedico().getId() + "', '" +
-                      cita.getPaciente().getId() + "', '" +
+                      cita.getMedico().getCedula() + "', '" +
+                      cita.getPaciente().getCedula() + "', '" +
                       cita.getEstado()+ "')";
             ConexionDB.ejecutarSentencia(sql);
              System.out.println("insertando...");

@@ -30,7 +30,7 @@ public class ConexionDB {
         String url =  "jdbc:postgresql://localhost:5432/scmdb"; 
         try {
             Class.forName("org.postgresql.Driver");
-            conexion = DriverManager.getConnection(url, "postgres", "cuenca");
+            conexion = DriverManager.getConnection(url, "postgres", "postgres");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Ocurrio un error: " + e.getMessage());
         }

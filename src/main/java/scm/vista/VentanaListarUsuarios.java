@@ -28,6 +28,7 @@ public class VentanaListarUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Listar Usuarios");
         setUndecorated(true);
+        setResizable(false);
 
         btRegresar.setText("Regresar");
         btRegresar.addActionListener(new java.awt.event.ActionListener() {

@@ -2,7 +2,6 @@ package scm.controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +41,7 @@ public class ControladorPersona {
                 ConexionDB.ejecutarSentencia(sql);
             } else if (tipo.equals("paciente")) {
                 Paciente paciente = (Paciente) persona;
-                SimpleDateFormat formato = new SimpleDateFormat("YYYY/MM/dd");
+                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
                 String fechaFormateada = formato.format(paciente.getFechaNacimiento());
                 sql = "insert into pacientes values(" +
                       paciente.getId() + ", '" + 
@@ -78,7 +77,7 @@ public class ControladorPersona {
                 ConexionDB.ejecutarSentencia(sql);
             } else if (tipo.equals("paciente")) {
                 Paciente paciente = (Paciente) persona;
-                SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
+                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
                 String fechaFormateada = formato.format(paciente.getFechaNacimiento());
                 sql = "update pacientes set " +
                       "sexo = '" + String.valueOf(paciente.getSexo()) + "'," +
@@ -115,25 +114,22 @@ public class ControladorPersona {
                     persona = new Medico(id, cedula, nombre, apellido, direccion, email, especialidad, usuario);
                 } else if (tipo.equals("paciente")){
                     sql = "select * from pacientes where id = " + id;
-                    SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
                     ResultSet resultadoPaciente = ConexionDB.ejecutarConsulta(sql);
                     resultadoPaciente.next();
                     char sexo = resultadoPaciente.getString("sexo").charAt(0);
-                    Date fechaNacimiento = formato.parse(resultadoPaciente.getDate("fechaNacimiento").toString());
-                    String tipoSangre = resultadoPaciente.getString("tipoSangre");
+                    Date fecha = resultadoPaciente.getDate("fechanacimiento");
+                    String tipoSangre = resultadoPaciente.getString("tiposangre");
                     String etnia = resultadoPaciente.getString("etnia");
                     String procedencia = resultadoPaciente.getString("procedencia");
                     String instruccion = resultadoPaciente.getString("instruccion");
-                    persona = new Paciente(id, cedula, nombre, apellido, sexo, fechaNacimiento,
+                    persona = new Paciente(id, cedula, nombre, apellido, sexo, fecha,
                                            tipoSangre, procedencia, etnia, instruccion);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Error buscar: " + e.getMessage());
             e.printStackTrace();
-        } catch (ParseException e) {
-            System.out.println("Error de fecha: " + e.getMessage());
-        }
+        } 
         return persona;
     }
     

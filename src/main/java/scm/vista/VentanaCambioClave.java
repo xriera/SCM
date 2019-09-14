@@ -37,6 +37,7 @@ public class VentanaCambioClave extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCM - Cambio de clave");
         setUndecorated(true);
+        setResizable(false);
 
         jLabel1.setText("ID:");
 
@@ -142,7 +143,7 @@ public class VentanaCambioClave extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "La clave ha sido actualizada!");
             } else {
                 limpiarCampos();
-                JOptionPane.showMessageDialog(null, "Las clave no coinciden!");
+                JOptionPane.showMessageDialog(null, "Las claves no coinciden!");
             }
         } else {
             limpiarCampos();

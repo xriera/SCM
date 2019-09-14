@@ -14,6 +14,7 @@ import scm.modelo.Usuario;
  */
 public class VentanaDatosMedico extends javax.swing.JFrame {
 
+    private int idMedico;
     private String accion;
     private String medicoBusqueda;
     
@@ -28,6 +29,7 @@ public class VentanaDatosMedico extends javax.swing.JFrame {
         txtDireccion.setText(medico.getDireccion());
         txtEspecialidad.setText(medico.getEspecialidad());
         txtEmail.setText(medico.getEmail());
+        idMedico = medico.getId();
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +55,7 @@ public class VentanaDatosMedico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCM - Datos de Médicos");
+        setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
@@ -239,7 +242,6 @@ public class VentanaDatosMedico extends javax.swing.JFrame {
                 return;
             }
         }
-        int id = ControladorPersona.generarID();
         String cedula = txtCedula.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
@@ -247,7 +249,7 @@ public class VentanaDatosMedico extends javax.swing.JFrame {
         String especialidad = txtEspecialidad.getText();
         String email = txtEmail.getText();
         Usuario usuario = ControladorUsuario.buscar(cedula);
-        Medico medico = new Medico(id, cedula, nombre, apellido, direccion, email, especialidad, usuario);
+        Medico medico = new Medico(idMedico, cedula, nombre, apellido, direccion, email, especialidad, usuario);
         if (accion.equals("modificar")) {
             if (ControladorPersona.modificar(medico, "medico")) {
                 ControladorUsuario.modificar(medicoBusqueda, usuario);

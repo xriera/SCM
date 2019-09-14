@@ -13,6 +13,7 @@ import scm.modelo.Usuario;
  */
 public class VentanaGestionMedicos extends javax.swing.JFrame {
 
+    private int idMedico;
     private String accion;
     private String medicoBusqueda;
     
@@ -48,6 +49,7 @@ public class VentanaGestionMedicos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCM - Gestión de Médicos");
+        setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
@@ -247,6 +249,7 @@ public class VentanaGestionMedicos extends javax.swing.JFrame {
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         limpiarCampos();
         activarCampos();
+        idMedico = ControladorPersona.generarID();
         accion = "insertar";
     }//GEN-LAST:event_btAgregarActionPerformed
 
@@ -292,6 +295,7 @@ public class VentanaGestionMedicos extends javax.swing.JFrame {
             txtEspecialidad.setText(medico.getEspecialidad());
             txtEmail.setText(medico.getEmail());
             medicoBusqueda = medico.getCedula();
+            idMedico = medico.getId();
             accion = "busqueda";
         } else {
             limpiarCampos();
@@ -316,7 +320,6 @@ public class VentanaGestionMedicos extends javax.swing.JFrame {
                 return;
             }
         }
-        int id = ControladorPersona.generarID();
         String cedula = txtCedula.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
@@ -324,8 +327,8 @@ public class VentanaGestionMedicos extends javax.swing.JFrame {
         String especialidad = txtEspecialidad.getText();
         String email = txtEmail.getText();
         Usuario usuario = ControladorUsuario.buscar(cedula);
-        if (usuario == null) usuario = new Usuario(id, cedula, "medico", "medico");
-        Medico medico = new Medico(id, cedula, nombre, apellido, direccion, email, especialidad, usuario);
+        if (usuario == null) usuario = new Usuario(idMedico, cedula, "medico", "medico");
+        Medico medico = new Medico(idMedico, cedula, nombre, apellido, direccion, email, especialidad, usuario);
         if (accion.equals("insertar")) {
             if (ControladorPersona.agregar(medico, "medico")) {
                 ControladorUsuario.agregar(usuario);

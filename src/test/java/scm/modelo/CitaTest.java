@@ -36,7 +36,7 @@ public class CitaTest {
 
     @Before
     public void setUp() {
-        instance = new Cita(0, new Date(), new Date(), "", null, null, "");
+        instance = new Cita(0, new Date(), "", "", null, null, "");
         medico = new Medico(1, "", "", "", "", "", "", null);
         paciente = new Paciente(2, "", "", "", '-', new Date(), "", "", "", "");
     }
@@ -63,8 +63,8 @@ public class CitaTest {
     @Test
     public void testGetHora() {
 
-        Date expResult = new Date();
-        Date result = instance.getHora();
+        String expResult = "";
+        String result = instance.getHora();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 

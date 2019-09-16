@@ -38,7 +38,7 @@ public class ControladorConsultaTest {
     float indiceMasa = (float) 18.6;
 
     //insertar
-    Cita c1 = new Cita(3, new Date(), new Date(), "prueba1", m, p, "A");
+    Cita c1 = new Cita(3, new Date(), "00:00", "prueba1", m, p, "A");
 
     Consulta c6 = new Consulta(3, c1, "Dolor de la pierna", "dolor", precionarterial, frecuenciaCardiaca, frecuenciaRespiratoria, temperaturaCorporal, peso, altura, "receta1", "cada 8 horas");
 

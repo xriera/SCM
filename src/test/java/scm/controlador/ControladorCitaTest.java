@@ -52,7 +52,7 @@ public class ControladorCitaTest {
     @Test
     public void testAgregar() {
         System.out.println("agregar");
-        Cita cita = new Cita(2, new Date(), new Date(), "gripe", m, p, "activo");
+        Cita cita = new Cita(2, new Date(), "00:00", "gripe", m, p, "activo");
         boolean expResult = true;
         boolean result = ControladorCita.agregar(cita);
         assertEquals(expResult, result);
@@ -70,7 +70,7 @@ public class ControladorCitaTest {
     @Test
     public void testModificar() {
         System.out.println("modificar");
-        Cita cita = new Cita(1, new Date(), new Date(), "embarazo", m, p, "activo");
+        Cita cita = new Cita(1, new Date(), "00:00", "embarazo", m, p, "activo");
         boolean expResult = ControladorCita.modificar(cita);;
         boolean result = ControladorCita.modificar(cita);
         assertEquals(expResult, result);

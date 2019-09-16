@@ -1,7 +1,6 @@
 package scm.vista;
 
 import scm.controlador.ConexionDB;
-import scm.modelo.Usuario;
 
 /**
  *
@@ -18,7 +17,7 @@ public class MenuSeleccion extends javax.swing.JFrame {
             btUsuarios.setEnabled(false);
         }
         if (rol.equals("recepcionista")) {
-            btMedicos.setEnabled(false);
+            btPacientes.setEnabled(false);
         }
         if (rol.equals("medico")) {
             btCitas.setEnabled(false);
@@ -76,6 +75,11 @@ public class MenuSeleccion extends javax.swing.JFrame {
         });
 
         btCitas.setText("Citas");
+        btCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCitasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,13 +144,23 @@ public class MenuSeleccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btMedicosActionPerformed
 
     private void btPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacientesActionPerformed
-        // TODO add your handling code here:
+        if (rol.equals("medico")) {
+            new VentanaDatosPaciente().setVisible(true);
+        } else {
+            new VentanaGestionPacientes().setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btPacientesActionPerformed
 
     private void btCambiarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambiarClaveActionPerformed
         new VentanaCambioClave().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btCambiarClaveActionPerformed
+
+    private void btCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCitasActionPerformed
+        new VentanaGestionCitas().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCitasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCambiarClave;

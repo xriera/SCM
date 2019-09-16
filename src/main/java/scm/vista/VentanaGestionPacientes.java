@@ -76,7 +76,11 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre:");
 
+        txtNombre.setEnabled(false);
+
         jLabel3.setText("Apellido:");
+
+        txtApellido.setEnabled(false);
 
         btBuscar.setText("Buscar");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,20 +99,18 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtApellido)
-                        .addGap(23, 23, 23))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtCedula)
+                        .addGap(18, 18, 18)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +145,19 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
         jLabel9.setText("Instrucción:");
 
         cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        cbSexo.setEnabled(false);
+
+        btFecha.setEnabled(false);
 
         cbTipoSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -" }));
+        cbTipoSangre.setEnabled(false);
+
+        txtProcedencia.setEnabled(false);
+
+        txtEtnia.setEnabled(false);
 
         cbInstruccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primaria", "Secundaria", "Universitaria" }));
+        cbInstruccion.setEnabled(false);
 
         btModificar.setText("Modificar");
         btModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +320,7 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
             txtProcedencia.setText(paciente.getProcedencia());
             txtEtnia.setText(paciente.getEtnia());
             cbInstruccion.setSelectedItem(paciente.getInstruccion());
+            idPaciente = paciente.getId();
             accion = "busqueda";
         } else {
             limpiarCampos();
@@ -359,28 +371,27 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
                                          procedencia, etnia, instruccion);
         if (accion.equals("insertar")) {
             if (ControladorPersona.agregar(paciente, "paciente")) {
-                limpiarCampos();
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" +
                                               "El paciente ha sido registrado!");
             } else {
-                limpiarCampos();
                 JOptionPane.showMessageDialog(null, "Operación cancelada:\n" +
                                               "El paciente ya existe en el sistema!.");
             }
         } else if (accion.equals("modificar")) {
-            if (ControladorPersona.modificar(paciente, "medico")) {
+            if (ControladorPersona.modificar(paciente, "paciente")) {
                 btModificar.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" +
                                               "El paciente ha sido modificado!");
             }
         } else if (accion.equals("eliminar")) {
             if (ControladorPersona.eliminar(cedula, "paciente")) {
-                limpiarCampos();
                 btEliminar.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" +
                                               "El paciente ha sido eliminado!");
             }
         }
+        limpiarCampos();
+        txtCedula.setText("");
         desactivarCampos();
     }//GEN-LAST:event_btGuardarActionPerformed
 
@@ -413,7 +424,7 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
             btModificar.setEnabled(true);
             accion = "";
             JOptionPane.showMessageDialog(null, "Accion cancelada:\n" +
-                "Primero busque el paciente a modificar!");
+                                             "Primero busque el paciente a modificar!");
         }
     }//GEN-LAST:event_btModificarActionPerformed
 
@@ -464,41 +475,6 @@ public class VentanaGestionPacientes extends javax.swing.JFrame {
         }
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaGestionPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaGestionPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaGestionPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaGestionPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaGestionPacientes().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btBuscar;

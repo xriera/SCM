@@ -10,13 +10,13 @@ public class Cita {
 
     private int id;
     private Date fecha;
-    private Date hora;
+    private String hora;
     private String motivo;
     private Medico medico;
     private Paciente paciente;
     private String estado;
 
-    public Cita(int id, Date fecha, Date hora, String motivo, 
+    public Cita(int id, Date fecha, String hora, String motivo, 
                 Medico medico, Paciente paciente,String estado) {
         this.id = id;
         this.fecha = fecha;
@@ -35,7 +35,7 @@ public class Cita {
         return fecha;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 

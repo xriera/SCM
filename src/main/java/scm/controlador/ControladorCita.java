@@ -7,7 +7,6 @@ package scm.controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,46 +26,47 @@ public class ControladorCita {
     }
 
     public static boolean agregar(Cita cita) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
-        Date fecha = cita.getFecha();
-        String cadenaFecha = formato.format(fecha);
-
-        SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm:ss");
-        Date hora = cita.getHora();
-        String cadenaHora = formato1.format(hora);
-
-        String sql = "insert into citas values("
+        if (buscar(cita.getId()) == null) {
+            Date fecha = cita.getFecha();
+            long cadenaFecha = fecha.getTime();
+            String sql = "insert into citas values("
                 + cita.getId() + ", '"
                 + cadenaFecha + "', '"
-                + cadenaHora + "', '"
+                + cita.getHora() + "', '"
                 + cita.getMotivo() + "', '"
                 + cita.getMedico().getCedula() + "', '"
                 + cita.getPaciente().getCedula() + "', '"
                 + cita.getEstado() + "')";
-        ConexionDB.ejecutarSentencia(sql);
-        System.out.println("insertando...");
-        return true;
+            ConexionDB.ejecutarSentencia(sql);
+            System.out.println("insertando...");
+            return true;
+        }
+        return false;
     }
 
     public static boolean modificar(Cita cita) {
-
-        String sql = "update citas set "
-                + "fecha = '" + cita.getFecha() + "',"
-                + "hora = '" + cita.getHora() + "' "
-                + "motivo = '" + cita.getMotivo() + "' "
-                + "idmedico = '" + cita.getMedico().getId() + "' "
-                + "idpaciente = '" + cita.getPaciente().getId() + "' "
+        if(buscar(cita.getId()) != null) {
+            String sql = "update citas set "
+                + "fecha = '" + cita.getFecha().getTime() + "',"
+                + "hora = '" + cita.getHora() + "', "
+                + "motivo = '" + cita.getMotivo() + "', "
+                + "idmedico = '" + cita.getMedico().getCedula() + "', "
+                + "idpaciente = '" + cita.getPaciente().getCedula() + "' "
                 + "where id = " + cita.getId();
-        ConexionDB.ejecutarSentencia(sql);
-        System.out.println("Modificando...");
-        return true;
-
+            ConexionDB.ejecutarSentencia(sql);
+            System.out.println("Modificando...");
+            return true;
+        }
+        return false;
     }
 
     public static boolean eliminar(int id) {
-        String sql = "delete from citas where id = '" + id + "'";
-        ConexionDB.ejecutarSentencia(sql);
-        return true;
+        if (buscar(id) != null) {
+            String sql = "delete from citas where id = '" + id + "'";
+            ConexionDB.ejecutarSentencia(sql);
+            return true;
+        }
+        return false;
     }
 
     public static Cita buscar(int id) {
@@ -75,7 +75,7 @@ public class ControladorCita {
         try {
             ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
             if (resultado.next()) {
-                String fecha = resultado.getString("fecha");
+                String fechaNoFormateada = resultado.getString("fecha");
                 String hora = resultado.getString("hora");
                 String motivo = resultado.getString("motivo");
                 String idMedico = resultado.getString("idMedico");
@@ -83,28 +83,55 @@ public class ControladorCita {
                 String estado = resultado.getString("estado");
                 Medico medico = (Medico) ControladorPersona.buscar(idMedico, "medico");
                 Paciente paciente = (Paciente) ControladorPersona.buscar(idPaciente, "paciente");
-                cita = new Cita(id, new Date(fecha), new Date(hora), motivo, medico, paciente, estado);
+                Date fechaFormateada = new Date(Long.valueOf(fechaNoFormateada));
+                cita = new Cita(id, fechaFormateada, hora, motivo, medico, paciente, estado);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
-        }
+        } 
         return cita;
     }
 
     public static List<Cita> listar() {
         List<Cita> lista = new ArrayList();
-        String sql = "select * from cita";
+        String sql = "select * from citas";
         try {
             ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
             while (resultado.next()) {
                 int id = resultado.getInt("id");
-                String fecha = resultado.getString("fecha");
+                String fechaNoFormateada = resultado.getString("fecha");
                 String hora = resultado.getString("hora");
                 String motivo = resultado.getString("motivo");
-                String idmedico = resultado.getString("idmedico");
-                String idpaciente = resultado.getString("idpaciente");
+                String idMedico = resultado.getString("idMedico");
+                String idPaciente = resultado.getString("idPaciente");
                 String estado = resultado.getString("estado");
-                //  lista.add(new Cita(id, fecha, hora, motivo, medico, paciente, estado));
+                Medico medico = (Medico) ControladorPersona.buscar(idMedico, "medico");
+                Paciente paciente = (Paciente) ControladorPersona.buscar(idPaciente, "paciente");
+                Date fechaFormateada = new Date(Long.valueOf(fechaNoFormateada));
+                lista.add(new Cita(id, fechaFormateada, hora, motivo, medico, paciente, estado));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    public static List<Cita> listarCitasEspecificas(String idPaciente) {
+        List<Cita> lista = new ArrayList();
+        String sql = "select * from citas where idPaciente = '" + idPaciente + "'";
+        try {
+            ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
+            while (resultado.next()) {
+                int idCita = resultado.getInt("id");
+                String fechaNoFormateada = resultado.getString("fecha");
+                String hora = resultado.getString("hora");
+                String motivo = resultado.getString("motivo");
+                String idMedico = resultado.getString("idMedico");
+                String estado = resultado.getString("estado");
+                Medico medico = (Medico) ControladorPersona.buscar(idMedico, "medico");
+                Paciente paciente = (Paciente) ControladorPersona.buscar(idPaciente, "paciente");
+                Date fechaFormateada = new Date(Long.valueOf(fechaNoFormateada));
+                lista.add(new Cita(idCita, fechaFormateada, hora, motivo, medico, paciente, estado));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

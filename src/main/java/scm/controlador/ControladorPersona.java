@@ -59,7 +59,7 @@ public class ControladorPersona {
     }
     
     public static boolean modificar(Persona persona, String tipo) {
-        if(buscar(persona.getCedula(), tipo) == null) {
+        if(buscar(persona.getCedula(), tipo) != null) {
             String sql = "update personas set " + 
                          "cedula = '" + persona.getCedula() + "'," +
                          "nombre = '" + persona.getNombre() + "'," +
@@ -106,7 +106,7 @@ public class ControladorPersona {
                 if (tipo.equals("medico")) {
                     sql = "select * from medicos where id = " + id;
                     ResultSet resultadoMedico = ConexionDB.ejecutarConsulta(sql);
-                    resultadoMedico.next();
+                    if (!resultadoMedico.next()) return null;
                     String direccion = resultadoMedico.getString("direccion");
                     String email = resultadoMedico.getString("email");
                     String especialidad = resultadoMedico.getString("especialidad");
@@ -115,7 +115,7 @@ public class ControladorPersona {
                 } else if (tipo.equals("paciente")){
                     sql = "select * from pacientes where id = " + id;
                     ResultSet resultadoPaciente = ConexionDB.ejecutarConsulta(sql);
-                    resultadoPaciente.next();
+                    if (!resultadoPaciente.next()) return null;
                     char sexo = resultadoPaciente.getString("sexo").charAt(0);
                     Date fecha = resultadoPaciente.getDate("fechanacimiento");
                     String tipoSangre = resultadoPaciente.getString("tiposangre");

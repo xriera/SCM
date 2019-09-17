@@ -296,7 +296,7 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
         String motivo = txtMotivo.getText();
         Medico medico = (Medico) cbMedico.getSelectedItem();
         Paciente paciente = (Paciente) cbPaciente.getSelectedItem();
-        String estado = "No asistido";
+        String estado = "no asistido";
         Cita cita = new Cita(id, fecha, horaFormateada, motivo, medico, paciente, estado);
         if (accion.equals("insertar")) {
             if (ControladorCita.agregar(cita)) {

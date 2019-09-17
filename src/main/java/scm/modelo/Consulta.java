@@ -92,10 +92,18 @@ public class Consulta {
     public String getIndicaciones() {
         return indicaciones;
     }
+    
+    public void setReceta(String receta) {
+        this.receta = receta;
+    }
+    
+    public void setIndicaciones(String indicaciones) {
+        this.indicaciones = indicaciones;
+    }
 
     //Calculo IMC
     private float calcularIndiceMasa() {
-        return (float) (peso / (altura*altura));
+        return (float) (peso / (altura * altura));
     }
 
     @Override

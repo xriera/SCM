@@ -21,9 +21,12 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
         datosPaciente = new PanelDatosPaciente();
         datosCitas = new PanelCitasPaciente();
         datosConsulta = new PanelConsultasPaciente();
+        datosReceta = new PanelRecetasPaciente();
+        
         tbPanel.add("Paciente", this.datosPaciente);
         tbPanel.add("Historial", this.datosCitas);
         tbPanel.add("Consultas", this.datosConsulta);
+        tbPanel.add("Receta", this.datosReceta);
     }
 
     @SuppressWarnings("unchecked")
@@ -75,10 +78,8 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
         });
 
         btModificar.setText("Modificar");
-        btModificar.setEnabled(false);
 
         btEliminar.setText("Eliminar");
-        btEliminar.setEnabled(false);
 
         btAgregar.setText("Agregar");
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,16 +102,13 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                     .addComponent(txtCedula))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,11 +150,11 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                             .addComponent(tbPanel)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(193, 193, 193)
                         .addComponent(btRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,12 +162,12 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tbPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGuardar)
                     .addComponent(btRegresar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -211,6 +209,9 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btAgregarActionPerformed
 
+    
+    
+    
     private void limpiarCampos() {
         txtCedula.setText("");
         txtNombre.setText("");
@@ -287,4 +288,5 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
     private PanelDatosPaciente datosPaciente;
     private PanelCitasPaciente datosCitas;
     private PanelConsultasPaciente datosConsulta;
+    private PanelRecetasPaciente datosReceta;
 }

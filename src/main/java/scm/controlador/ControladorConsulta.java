@@ -20,9 +20,8 @@ public class ControladorConsulta {
     }
     
     public static boolean agregar(Consulta consulta) {
-
-        // if (buscar(consulta.getId()) != null) {
-        String sql = "insert into consultas values("
+        if (buscar(consulta.getId()) == null) {
+            String sql = "insert into consultas values("
                 + consulta.getId() + ", '"
                 + consulta.getCita().getId() + "', '"
                 + consulta.getSintomas() + "', '"
@@ -36,19 +35,19 @@ public class ControladorConsulta {
                 + consulta.getIndiceMasa() + ", '"
                 + consulta.getReceta() + "', '"
                 + consulta.getIndicaciones() + "');";
-
-        ConexionDB.ejecutarSentencia(sql);
-        System.out.println("insertando...");
-        System.out.println(sql);
-        return true;
+            ConexionDB.ejecutarSentencia(sql);
+            System.out.println("insertando...");
+            System.out.println(sql);
+            return true;
+        }
+        return false;
     }
 
     public static boolean modificar(Consulta consulta) {
-
-        // if (buscar(id)!= null){
-        String sql = "update consultas set "
-                + "sintomas ='" + consulta.getSintomas() + "', "
-                + "diagonostico = '" + consulta.getDiagnostico() + "',"
+        if (buscar(consulta.getId()) != null){
+            String sql = "update consultas set "
+                + "sintomas = '" + consulta.getSintomas() + "', "
+                + "diagnostico = '" + consulta.getDiagnostico() + "',"
                 + "pa = " + consulta.getPresionArterial() + ","
                 + "fc = " + consulta.getFrecuenciaCardiaca() + ","
                 + "fr = " + consulta.getFrecuenciaRespiratoria() + ","
@@ -59,17 +58,41 @@ public class ControladorConsulta {
                 + "receta = '" + consulta.getReceta() + "',"
                 + "indicaciones = '" + consulta.getIndicaciones() + "'"
                 + "where id = " + consulta.getId();
-        ConexionDB.ejecutarSentencia(sql);
-        System.out.println("Modificando....");
-        System.out.println("" + sql);
-        return true;
+            ConexionDB.ejecutarSentencia(sql);
+            System.out.println("Modificando....");
+            System.out.println("" + sql);
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * Meotod para listar (corregido)
-     *
-     * @return lista de consultas
-     */
+    public static Consulta buscar(int id) {
+        Consulta consulta = null;
+        String sql = "select * from consultas where id = " + id;
+        try {
+            ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
+            if (resultado.next()) {
+                int idcita = resultado.getInt("idcita");
+                String sintomas = resultado.getString("sintomas");
+                String diagnostico = resultado.getString("diagnostico");
+                float pa = resultado.getFloat("pa");
+                float fc = resultado.getFloat("fc");
+                float fr = resultado.getFloat("fr");
+                float tc = resultado.getFloat("tc");
+                float peso = resultado.getFloat("peso");
+                float altura = resultado.getFloat("altura");
+                String receta = resultado.getString("receta");
+                String indicaciones = resultado.getString("indicaciones");
+                Cita cita = ControladorCita.buscar(idcita);
+                consulta = new Consulta(id, cita, sintomas, diagnostico, altura,
+                          pa, fc, fr, peso, altura, receta, indicaciones);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return consulta;
+    }
+    
     public static List<Consulta> listar() {
         List<Consulta> lista = new ArrayList();
         String sql = "select * from consultas";
@@ -79,7 +102,7 @@ public class ControladorConsulta {
                 int id = resultado.getInt("id");
                 int idcita = resultado.getInt("idcita");
                 String sintomas = resultado.getString("sintomas");
-                String diagnostico = resultado.getString("diagonostico");
+                String diagnostico = resultado.getString("diagnostico");
                 float pa = resultado.getFloat("pa");
                 float fc = resultado.getFloat("fc");
                 float fr = resultado.getFloat("fr");
@@ -96,9 +119,20 @@ public class ControladorConsulta {
             System.out.println("Error: " + e.getMessage());
         }
         return lista;
-
     }
 
+    public static List<Consulta> listarConsultasEspecificas(String cedulaPaciente) {
+        List<Consulta> listaFiltrada = new ArrayList<>();
+        List<Consulta> listaGeneral = listar();
+        for (int i = 0; i < listaGeneral.size(); i++) {
+            Consulta consulta = listaGeneral.get(i);
+            Cita cita = consulta.getCita();
+            if (cita.getPaciente().getCedula().equals(cedulaPaciente)) {
+                listaFiltrada.add(consulta);
+            }
+        }
+        return listaFiltrada;
+    }
 
     public static boolean eliminar(int id) {
         String sql = "delete from consultas where id = " + id + "";

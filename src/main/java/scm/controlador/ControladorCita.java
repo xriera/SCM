@@ -116,9 +116,10 @@ public class ControladorCita {
         return lista;
     }
     
-    public static List<Cita> listarCitasEspecificas(String idPaciente) {
-        List<Cita> lista = new ArrayList();
-        String sql = "select * from citas where idPaciente = '" + idPaciente + "'";
+    public static List<Cita> listarCitasNoAsistidas(String cedulaPaciente) {
+        List<Cita> listaFiltrada = new ArrayList();
+        String sql = "select * from citas where idPaciente = '" + cedulaPaciente + "'"
+                   + "and estado = 'no asistido'";
         try {
             ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
             while (resultado.next()) {
@@ -129,13 +130,13 @@ public class ControladorCita {
                 String idMedico = resultado.getString("idMedico");
                 String estado = resultado.getString("estado");
                 Medico medico = (Medico) ControladorPersona.buscar(idMedico, "medico");
-                Paciente paciente = (Paciente) ControladorPersona.buscar(idPaciente, "paciente");
+                Paciente paciente = (Paciente) ControladorPersona.buscar(cedulaPaciente, "paciente");
                 Date fechaFormateada = new Date(Long.valueOf(fechaNoFormateada));
-                lista.add(new Cita(idCita, fechaFormateada, hora, motivo, medico, paciente, estado));
+                listaFiltrada.add(new Cita(idCita, fechaFormateada, hora, motivo, medico, paciente, estado));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return lista;
+        return listaFiltrada;
     }
 }

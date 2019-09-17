@@ -119,7 +119,7 @@ public class ControladorCita {
     public static List<Cita> listarCitasNoAsistidas(String cedulaPaciente) {
         List<Cita> listaFiltrada = new ArrayList();
         String sql = "select * from citas where idPaciente = '" + cedulaPaciente + "'"
-                   + "and estado = 'no asistido'";
+                   + "and estado = 'No asistido'";
         try {
             ResultSet resultado = ConexionDB.ejecutarConsulta(sql);
             while (resultado.next()) {

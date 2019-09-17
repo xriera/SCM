@@ -22,7 +22,6 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
 
     public PanelCitasPaciente() {
         initComponents();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -88,6 +87,9 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
 
     public void setDatosCita(String idPaciente) {
         DefaultTableModel modelo = (DefaultTableModel) tbCitas.getModel();
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+        }
         tbCitas.setDefaultRenderer(Object.class, new RenderizadorJButton());
         tbCitas.setRowHeight(30);
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
@@ -101,7 +103,9 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
             Medico medico = cita.getMedico();
             String nombreMedico = medico.getNombre() + " " + medico.getApellido();
             String estado = cita.getEstado();
-            modelo.addRow(new Object[]{fecha, hora, motivo, nombreMedico, estado, ""});
+            JButton boton = new JButton("");
+            boton.setVisible(true);
+            modelo.addRow(new Object[]{fecha, hora, motivo, nombreMedico, estado, null});
         }
         for (Consulta consulta : consultas) {
             Cita cita = consulta.getCita();
@@ -131,7 +135,7 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
                 ((PanelConsultasPaciente) componente).setDatos(consulta);
                 ((PanelConsultasPaciente) componente).requestFocus();
             } else if (componente instanceof PanelRecetasPaciente) {
-                ((PanelRecetasPaciente) componente).setIDConsultaElegida(consulta.getId());
+                ((PanelRecetasPaciente) componente).agregarReceta(consulta.getId());
             }
         }
     }

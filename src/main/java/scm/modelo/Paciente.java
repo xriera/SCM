@@ -1,5 +1,8 @@
 package scm.modelo;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 /**
  *
@@ -48,5 +51,14 @@ public class Paciente extends Persona {
 
     public String getInstruccion() {
         return instruccion;
+    }
+    
+    public int calcularEdad() {
+       return Date.from(Instant.now()).getYear() - fechaNacimiento.getYear();
+    }
+
+    @Override
+    public String toString() {
+        return getNombre() + " " + getApellido();
     }
 }

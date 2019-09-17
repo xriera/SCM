@@ -36,8 +36,6 @@ public class ControladorConsulta {
                 + consulta.getReceta() + "', '"
                 + consulta.getIndicaciones() + "');";
             ConexionDB.ejecutarSentencia(sql);
-            System.out.println("insertando...");
-            System.out.println(sql);
             return true;
         }
         return false;
@@ -59,8 +57,6 @@ public class ControladorConsulta {
                 + "indicaciones = '" + consulta.getIndicaciones() + "'"
                 + "where id = " + consulta.getId();
             ConexionDB.ejecutarSentencia(sql);
-            System.out.println("Modificando....");
-            System.out.println("" + sql);
             return true;
         }
         return false;
@@ -87,7 +83,7 @@ public class ControladorConsulta {
                 consulta = new Consulta(id, cita, sintomas, diagnostico, altura,
                           pa, fc, fr, peso, altura, receta, indicaciones);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return consulta;
@@ -135,10 +131,11 @@ public class ControladorConsulta {
     }
 
     public static boolean eliminar(int id) {
-        String sql = "delete from consultas where id = " + id + "";
-        ConexionDB.ejecutarSentencia(sql);
-        System.out.println(sql);
-        System.out.println("eliminado.....");
-        return true;
+        if (buscar(id) != null) {
+            String sql = "delete from consultas where id = " + id + "";
+            ConexionDB.ejecutarSentencia(sql);
+            return true;
+        }
+        return false;
     }
 }

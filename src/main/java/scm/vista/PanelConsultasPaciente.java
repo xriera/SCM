@@ -9,7 +9,9 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import scm.controlador.ControladorCita;
 import scm.controlador.ControladorConsulta;
+import scm.modelo.Cita;
 import scm.modelo.Consulta;
 
 /**
@@ -53,7 +55,7 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDiagnostico = new javax.swing.JTextArea();
 
-        setPreferredSize(new java.awt.Dimension(520, 300));
+        setEnabled(false);
 
         txtFecha.setEnabled(false);
 
@@ -61,17 +63,23 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
 
         jLabel2.setText("PA:");
 
-        txtPA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtPA.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtPA.setEnabled(false);
 
-        txtFC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtFC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtFC.setEnabled(false);
 
-        txtFR.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtFR.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtFR.setEnabled(false);
 
-        txtTemperatura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtTemperatura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtTemperatura.setEnabled(false);
 
-        txtPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtPeso.setEnabled(false);
 
-        txtTalla.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtTalla.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtTalla.setEnabled(false);
 
         jLabel3.setText("FC:");
 
@@ -86,6 +94,7 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         txtSintomas.setColumns(20);
         txtSintomas.setLineWrap(true);
         txtSintomas.setRows(5);
+        txtSintomas.setEnabled(false);
         jScrollPane1.setViewportView(txtSintomas);
 
         jLabel8.setText("Sintomas:");
@@ -99,6 +108,7 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         txtDiagnostico.setColumns(20);
         txtDiagnostico.setLineWrap(true);
         txtDiagnostico.setRows(5);
+        txtDiagnostico.setEnabled(false);
         jScrollPane2.setViewportView(txtDiagnostico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -106,12 +116,17 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(218, 218, 218))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -132,18 +147,13 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
                                     .addComponent(txtTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(33, 33, 33)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8)
                             .addComponent(jLabel10)
                             .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,19 +164,17 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel9)
                     .addComponent(txtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -189,8 +197,8 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(33, 33, 33))))
+                            .addComponent(jLabel7))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -207,83 +215,89 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         txtTalla.setText(consulta.getAltura() + "");
         txtIMC.setText(consulta.getIndiceMasa() + "");
         txtSintomas.setText(consulta.getSintomas());
+        txtDiagnostico.setText(consulta.getDiagnostico());
     }
 
-    public void configurarPanel(String accion) {
-        int id = 0;
-        if (accion.equals("insertar")) {
-            activarCampos();
-            id = ControladorConsulta.generarID();        
-        } else if (accion.equals("modificar")) {
-            activarCampos();
-            id = consultaTemporal.getId();
-        } else if (accion.equals("eliminar")) {
-            desactivarCampos();
-        } else if (accion.equals("guardar")) {
-            Date fecha = Date.from(Instant.now());
-            float pa = Float.valueOf(txtPA.getText());
-            float fc = Float.valueOf(txtFC.getText());
-            float fr = Float.valueOf(txtFR.getText());
-            float tc = Float.valueOf(txtTemperatura.getText());
-            float talla = Float.valueOf(txtTalla.getText());
-            float peso = Float.valueOf(txtPeso.getText());
-            String sintomas = txtSintomas.getText();
-            String diagnostico = txtDiagnostico.getText();
-            if (accion.equals("insertar")) {
-                Consulta consulta = new Consulta(id, consultaTemporal.getCita(), sintomas, diagnostico,
-                                                 pa, fc, fr, tc, peso, talla, "", "");
-                if (ControladorConsulta.agregar(consulta)) {
-                    JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
-                                                  "La consulta ha sido agregada con exito!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Operacion fallida:\n" + 
+    public void guardarCambiosConsulta(String accion, PanelRecetasPaciente panelRecetas) {
+        float pa = Float.valueOf(txtPA.getText().replace(",", "."));
+        float fc = Float.valueOf(txtFC.getText().replace(",", "."));
+        float fr = Float.valueOf(txtFR.getText().replace(",", "."));
+        float tc = Float.valueOf(txtTemperatura.getText().replace(",", "."));
+        float talla = Float.valueOf(txtTalla.getText().replace(",", "."));
+        float peso = Float.valueOf(txtPeso.getText().replace(",", "."));
+        String sintomas = txtSintomas.getText();
+        String diagnostico = txtDiagnostico.getText();
+        Cita cita = ControladorCita.buscar(ControladorCita.generarID() - 1);
+        cita.setEstado("Asistido");
+        ControladorCita.modificar(cita);
+        if (accion.equals("insertar") && consultaTemporal == null) {
+            Consulta consulta = new Consulta(ControladorConsulta.generarID(),
+                                             cita, sintomas, diagnostico,
+                                             pa, fc, fr, tc, peso, talla, "", "");
+            if (ControladorConsulta.agregar(consulta)) {
+                panelRecetas.generarReceta(consulta.getId());
+                panelRecetas.limpiarCampos();
+                JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
+                                                "La consulta ha sido agregada con exito!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Operacion fallida:\n" + 
                                                   "La consulta no ha sido agregada!");
-                }
-            } else if (accion.equals("modificar")) {
-                Consulta consulta = new Consulta(id, consultaTemporal.getCita(), sintomas, diagnostico,
-                                                 pa, fc, fr, tc, peso, talla, 
-                                                 consultaTemporal.getReceta(), consultaTemporal.getIndicaciones());
-                if (ControladorConsulta.modificar(consultaTemporal)) {
-                    JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
-                                                  "La consulta ha sido modificada con exito!");
-                }
-            } else if (accion.equals("eliminar")) {
-                if (ControladorConsulta.eliminar(consultaTemporal.getId())) {
-                    JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
-                                                  "La consulta ha sido eliminada con exito!");
-                }
             }
-            limpiarCampos();
-            desactivarCampos();
+        } else if (accion.equals("modificar")) {
+            Consulta consulta = new Consulta(consultaTemporal.getId(),
+                                             consultaTemporal.getCita(),
+                                             sintomas, diagnostico,
+                                             pa, fc, fr, tc, peso, talla, 
+                                             consultaTemporal.getReceta(),
+                                             consultaTemporal.getIndicaciones());
+            if (ControladorConsulta.modificar(consulta)) {
+                panelRecetas.generarReceta(consulta.getId());
+                JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
+                                              "La consulta ha sido modificada con exito!");
+            }
+        } else if (accion.equals("eliminar")) {
+            if (ControladorConsulta.eliminar(consultaTemporal.getId())) {
+                JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
+                                              "La consulta ha sido eliminada con exito!");
+            }
         }
+        limpiarCampos();
+        desactivarCampos();
+        panelRecetas.desactivarCampos();
     }
     
-    private void limpiarCampos() {
-        
+    public void limpiarCampos() {
+        txtPA.setText("");
+        txtFC.setText("");
+        txtFR.setText("");
+        txtTemperatura.setText("");
+        txtPeso.setText("");
+        txtTalla.setText("");
+        txtIMC.setText("");
+        txtSintomas.setText("");
+        txtDiagnostico.setText("");
     }
     
-    private void activarCampos() {
-        txtFecha.setEnabled(true);
+    public void activarCampos() {
         txtPA.setEnabled(true);
         txtFC.setEnabled(true);
         txtFR.setEnabled(true);
         txtTemperatura.setEnabled(true);
         txtPeso.setEnabled(true);
         txtTalla.setEnabled(true);
-        txtIMC.setEnabled(true);
         txtSintomas.setEnabled(true);
+        txtDiagnostico.setEnabled(true);
     }
     
-    private void desactivarCampos() {
-        txtFecha.setEnabled(false);
+    public void desactivarCampos() {
         txtPA.setEnabled(false);
         txtFC.setEnabled(false);
         txtFR.setEnabled(false);
         txtTemperatura.setEnabled(false);
         txtPeso.setEnabled(false);
         txtTalla.setEnabled(false);
-        txtIMC.setEnabled(false);
         txtSintomas.setEnabled(false);
+        txtDiagnostico.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

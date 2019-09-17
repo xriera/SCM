@@ -1,5 +1,6 @@
 package scm.vista;
 
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import scm.controlador.ControladorPersona;
@@ -22,7 +23,6 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
         datosCitas = new PanelCitasPaciente();
         datosConsulta = new PanelConsultasPaciente();
         datosReceta = new PanelRecetasPaciente();
-        
         tbPanel.add("Paciente", this.datosPaciente);
         tbPanel.add("Historial", this.datosCitas);
         tbPanel.add("Consultas", this.datosConsulta);
@@ -78,10 +78,23 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
         });
 
         btModificar.setText("Modificar");
+        btModificar.setEnabled(false);
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
 
         btEliminar.setText("Eliminar");
+        btEliminar.setEnabled(false);
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         btAgregar.setText("Agregar");
+        btAgregar.setEnabled(false);
         btAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAgregarActionPerformed(evt);
@@ -129,7 +142,19 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
+        tbPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        tbPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPanelMouseClicked(evt);
+            }
+        });
+
         btGuardar.setText("Guardar");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarActionPerformed(evt);
+            }
+        });
 
         btRegresar.setText("Regresar");
         btRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +179,7 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                         .addComponent(btRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,12 +231,60 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btRegresarActionPerformed
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
-        
+        datosConsulta.limpiarCampos();
+        datosConsulta.activarCampos();
+        datosReceta.limpiarCampos();
+        datosReceta.activarCampos();
+        accion = "insertar";
     }//GEN-LAST:event_btAgregarActionPerformed
 
-    
-    
-    
+    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+        datosConsulta.activarCampos();
+        datosReceta.activarCampos();
+        accion = "modificar";
+    }//GEN-LAST:event_btModificarActionPerformed
+
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        datosConsulta.desactivarCampos();
+        datosReceta.desactivarCampos();
+        accion = "eliminar";
+    }//GEN-LAST:event_btEliminarActionPerformed
+
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+        if (accion.equals("")) {
+            JOptionPane.showMessageDialog(null, "Sin cambios a realizar!");
+            return;
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "Confirmar:\n" +
+                                                   "Esta seguro de continuar?",
+                                                   null,
+                                                   JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.NO_OPTION) {
+                limpiarCampos();
+                desactivarCampos();
+                JOptionPane.showMessageDialog(null, "Operacion cancelada!");
+                return;
+            }
+        }
+        datosConsulta.guardarCambiosConsulta(accion, datosReceta);
+    }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void tbPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPanelMouseClicked
+        Component panel = tbPanel.getSelectedComponent();
+        panel.requestFocus();
+        if (panel instanceof PanelDatosPaciente || panel instanceof PanelCitasPaciente) {
+            btAgregar.setEnabled(false);
+            btModificar.setEnabled(false);
+            btEliminar.setEnabled(false);
+        } else {
+            if (accion.equals("busqueda")) {
+                btAgregar.setEnabled(true);
+                btModificar.setEnabled(true);
+                btEliminar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_tbPanelMouseClicked
+
     private void limpiarCampos() {
         txtCedula.setText("");
         txtNombre.setText("");
@@ -236,39 +309,6 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
                 txtCedula.setText(texto.trim());
             }
         }
-    }
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaDatosPaciente().setVisible(true);
-            }
-        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

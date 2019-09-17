@@ -17,7 +17,7 @@ public class MenuSeleccion extends javax.swing.JFrame {
             btUsuarios.setEnabled(false);
         }
         if (rol.equals("recepcionista")) {
-            btPacientes.setEnabled(false);
+            btPacientes.setEnabled(true);
         }
         if (rol.equals("medico")) {
             btCitas.setEnabled(false);

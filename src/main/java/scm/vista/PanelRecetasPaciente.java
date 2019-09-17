@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scm.vista;
 
 import scm.controlador.ControladorConsulta;
@@ -14,7 +9,7 @@ import scm.modelo.Consulta;
  */
 public class PanelRecetasPaciente extends javax.swing.JPanel {
 
-    private int idConsultaElegida;
+    private Consulta consultaFinal;
     
     public PanelRecetasPaciente() {
         initComponents();
@@ -35,31 +30,33 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
 
         txtReceta.setColumns(20);
         txtReceta.setRows(5);
+        txtReceta.setEnabled(false);
         jScrollPane1.setViewportView(txtReceta);
 
         jLabel2.setText("Indicaciones:");
 
         txtIndicaciones.setColumns(20);
         txtIndicaciones.setRows(5);
+        txtIndicaciones.setEnabled(false);
         jScrollPane2.setViewportView(txtIndicaciones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -67,23 +64,48 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    public void setIDConsultaElegida(int idConsultaElegida) {
-        this.idConsultaElegida = idConsultaElegida;
+    public void agregarReceta(int idConsultaElegida) {
         Consulta consulta = ControladorConsulta.buscar(idConsultaElegida);
-        if (consulta != null) {
-            consulta.setReceta(txtReceta.getText());
-            consulta.setIndicaciones(txtIndicaciones.getText());
-            ControladorConsulta.modificar(consulta);
+        txtReceta.setText(consulta.getReceta());
+        txtIndicaciones.setText(consulta.getIndicaciones());
+    }
+
+    public void generarReceta(int idConsultaElegida) {
+        consultaFinal = ControladorConsulta.buscar(idConsultaElegida);
+        if (consultaFinal != null) {
+            consultaFinal.setReceta(txtReceta.getText());
+            consultaFinal.setIndicaciones(txtIndicaciones.getText());
+            ControladorConsulta.modificar(consultaFinal);
+            imprimirReceta();
         }
     }
     
-    public int getIDConsultaElegida() {
-        return idConsultaElegida;
+    private void imprimirReceta() {
+        PanelExportarReceta panel = new PanelExportarReceta(consultaFinal);
+        panel.setVisible(true);
+        panel.imprimirImagen();
+        panel.dispose();
     }
+    
+    public void limpiarCampos() {
+        txtReceta.setText("");
+        txtIndicaciones.setText("");
+    }
+    
+    public void activarCampos() {
+        txtReceta.setEnabled(true);
+        txtIndicaciones.setEnabled(true);
+    }
+    
+    public void desactivarCampos() {
+        txtReceta.setEnabled(false);
+        txtIndicaciones.setEnabled(false);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

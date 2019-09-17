@@ -52,27 +52,27 @@ public class ControladorPersonaTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of buscar method, of class ControladorPersona.
-     */
-    @Test
-    public void testBuscar() {
-        String cedula = "";
-        String tipo = "medico";
-        Persona expResult = null;
-        Persona result = ControladorPersona.buscar(cedula, tipo);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of eliminar method, of class ControladorPersona.
-     */
-    @Test
-    public void testEliminar() {
-        String cedula = "";
-        String tipo = "medico";
-        boolean expResult = true;
-        boolean result = ControladorPersona.eliminar(cedula, tipo);
-        assertEquals(expResult, result);
-    }
+//    /**
+//     * Test of buscar method, of class ControladorPersona.
+//     */
+//    @Test
+//    public void testBuscar() {
+//        String cedula = "";
+//        String tipo = "medico";
+//        Persona expResult = null;
+//        Persona result = ControladorPersona.buscar(cedula, tipo);
+//        assertEquals(expResult, result);
+//    }
+//
+//    /**
+//     * Test of eliminar method, of class ControladorPersona.
+//     */
+//    @Test
+//    public void testEliminar() {
+//        String cedula = "";
+//        String tipo = "medico";
+//        boolean expResult = true;
+//        boolean result = ControladorPersona.eliminar(cedula, tipo);
+//        assertEquals(expResult, result);
+//    }
 }

@@ -51,7 +51,8 @@ public class ControladorCita {
                 + "hora = '" + cita.getHora() + "', "
                 + "motivo = '" + cita.getMotivo() + "', "
                 + "idmedico = '" + cita.getMedico().getCedula() + "', "
-                + "idpaciente = '" + cita.getPaciente().getCedula() + "' "
+                + "idpaciente = '" + cita.getPaciente().getCedula() + "', "
+                + "estado = '" + cita.getEstado() + "' "
                 + "where id = " + cita.getId();
             ConexionDB.ejecutarSentencia(sql);
             System.out.println("Modificando...");

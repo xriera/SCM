@@ -26,6 +26,11 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
         initComponents();
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
         txtFecha.setText(formato.format(Date.from(Instant.now())));
+        txtPA.setValue("0");
+        txtFC.setValue("0");
+        txtFR.setValue("0");
+        txtPeso.setValue("0");
+        txtTalla.setValue("0");
     }
 
     @SuppressWarnings("unchecked")
@@ -245,13 +250,14 @@ public class PanelConsultasPaciente extends javax.swing.JPanel {
             }
         } else if (accion.equals("modificar")) {
             Consulta consulta = new Consulta(consultaTemporal.getId(),
-                                             consultaTemporal.getCita(),
+                                             cita,
                                              sintomas, diagnostico,
                                              pa, fc, fr, tc, peso, talla, 
                                              consultaTemporal.getReceta(),
                                              consultaTemporal.getIndicaciones());
             if (ControladorConsulta.modificar(consulta)) {
                 panelRecetas.generarReceta(consulta.getId());
+                panelRecetas.limpiarCampos();
                 JOptionPane.showMessageDialog(null, "Operacion exitosa:\n" + 
                                               "La consulta ha sido modificada con exito!");
             }

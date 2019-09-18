@@ -22,6 +22,7 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
 
     public PanelCitasPaciente() {
         initComponents();
+        limpiarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -85,11 +86,16 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tbCitasMouseClicked
 
-    public void setDatosCita(String idPaciente) {
+    public void limpiarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tbCitas.getModel();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
+        for (int i = 0; modelo.getRowCount() > 0; i++) {
             modelo.removeRow(i);
         }
+        tbCitas.setModel(modelo);
+    }
+    
+    public void setDatosCita(String idPaciente) {
+        DefaultTableModel modelo = (DefaultTableModel) tbCitas.getModel();
         tbCitas.setDefaultRenderer(Object.class, new RenderizadorJButton());
         tbCitas.setRowHeight(30);
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
@@ -103,8 +109,6 @@ public class PanelCitasPaciente extends javax.swing.JPanel {
             Medico medico = cita.getMedico();
             String nombreMedico = medico.getNombre() + " " + medico.getApellido();
             String estado = cita.getEstado();
-            JButton boton = new JButton("");
-            boton.setVisible(true);
             modelo.addRow(new Object[]{fecha, hora, motivo, nombreMedico, estado, null});
         }
         for (Consulta consulta : consultas) {

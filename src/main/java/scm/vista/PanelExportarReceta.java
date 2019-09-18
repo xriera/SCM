@@ -5,7 +5,6 @@
  */
 package scm.vista;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -31,12 +30,12 @@ public class PanelExportarReceta extends javax.swing.JFrame {
         int edad = paciente.calcularEdad();
         txtFecha.setText(formato.format(fecha));
         txtPaciente.setText(paciente.toString());
-        txtEdad.setText(edad + "");
+        txtEdad.setText(edad + " Años");
         txtSexo.setText(paciente.getSexo() + "");
-        txtTalla.setText(consulta.getAltura() + "");
-        txtPeso.setText(consulta.getPeso() + "");
+        txtTalla.setText(consulta.getAltura() + " Cm");
+        txtPeso.setText(consulta.getPeso() + " Kg");
         txtReceta.setText(consulta.getReceta());
-        txtInidicaciones.setText(consulta.getIndicaciones());
+        txtIndicaciones.setText(consulta.getIndicaciones());
     }
 
     @SuppressWarnings("unchecked")
@@ -44,7 +43,7 @@ public class PanelExportarReceta extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtInidicaciones = new javax.swing.JTextArea();
+        txtIndicaciones = new javax.swing.JTextArea();
         txtEdad = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtSexo = new javax.swing.JLabel();
@@ -64,12 +63,12 @@ public class PanelExportarReceta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtInidicaciones.setEditable(false);
-        txtInidicaciones.setBackground(getBackground());
-        txtInidicaciones.setColumns(20);
-        txtInidicaciones.setRows(5);
-        txtInidicaciones.setBorder(null);
-        jScrollPane2.setViewportView(txtInidicaciones);
+        txtIndicaciones.setEditable(false);
+        txtIndicaciones.setBackground(getBackground());
+        txtIndicaciones.setColumns(20);
+        txtIndicaciones.setRows(5);
+        txtIndicaciones.setBorder(null);
+        jScrollPane2.setViewportView(txtIndicaciones);
 
         txtEdad.setText("--------------------");
 
@@ -188,15 +187,13 @@ public class PanelExportarReceta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void imprimirImagen() {
+    public void imprimirImagen(String ruta) {
         try {
             BufferedImage bufferImagen = new BufferedImage(this.getWidth(), this.getHeight(),
                                              BufferedImage.TYPE_INT_RGB);
             Graphics2D graficos = bufferImagen.createGraphics();
             this.paint(graficos);
-            ImageIO.write(bufferImagen, "png", new File("Receta.png"));
-        //} catch (AWTException e) {
-          //  System.out.println("Error: " + e.getMessage());
+            ImageIO.write(bufferImagen, "png", new File(ruta + ".png"));
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -215,7 +212,7 @@ public class PanelExportarReceta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel txtEdad;
     private javax.swing.JLabel txtFecha;
-    private javax.swing.JTextArea txtInidicaciones;
+    private javax.swing.JTextArea txtIndicaciones;
     private javax.swing.JLabel txtPaciente;
     private javax.swing.JLabel txtPeso;
     private javax.swing.JTextArea txtReceta;

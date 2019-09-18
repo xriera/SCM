@@ -45,7 +45,7 @@ public class ConexionDB {
             conexion.close();
             return true;
         } catch (SQLException e) {
-            System.out.println("Error sentencia: " + e.getMessage());
+            e.printStackTrace();
         }
         return false;
     }

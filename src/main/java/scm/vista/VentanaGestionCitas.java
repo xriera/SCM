@@ -168,7 +168,7 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
                     .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,6 +238,7 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
 
     private void btAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarActionPerformed
         txtID.setText("");
+        txtID.setEnabled(false);
         limpiarCampos();
         activarCampos();
         id = ControladorCita.generarID();
@@ -245,6 +246,8 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_btAgregarActionPerformed
 
     private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+        txtID.setText("");
+        txtID.setEnabled(false);
         if (accion.equals("busqueda")) {
             activarCampos();
             btModificar.setEnabled(false);
@@ -260,6 +263,8 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_btModificarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        txtID.setText("");
+        txtID.setEnabled(false);
         if (accion.equals("busqueda")) {
             btEliminar.setEnabled(false);
             accion = "eliminar";
@@ -320,6 +325,7 @@ public class VentanaGestionCitas extends javax.swing.JFrame {
             }
         }
         txtID.setText("");
+        txtID.setEnabled(true);
         limpiarCampos();
         desactivarCampos();
     }//GEN-LAST:event_btGuardarActionPerformed

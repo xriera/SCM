@@ -1,5 +1,6 @@
 package scm.vista;
 
+import javax.swing.JFileChooser;
 import scm.controlador.ControladorConsulta;
 import scm.modelo.Consulta;
 
@@ -25,6 +26,7 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtIndicaciones = new javax.swing.JTextArea();
+        btImprimir = new javax.swing.JButton();
 
         jLabel1.setText("Receta:");
 
@@ -40,33 +42,50 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
         txtIndicaciones.setEnabled(false);
         jScrollPane2.setViewportView(txtIndicaciones);
 
+        btImprimir.setText("Imprimir");
+        btImprimir.setEnabled(false);
+        btImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btImprimir))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btImprimir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
+        imprimirReceta();
+    }//GEN-LAST:event_btImprimirActionPerformed
     
     public void agregarReceta(int idConsultaElegida) {
         Consulta consulta = ControladorConsulta.buscar(idConsultaElegida);
@@ -87,8 +106,20 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
     private void imprimirReceta() {
         PanelExportarReceta panel = new PanelExportarReceta(consultaFinal);
         panel.setVisible(true);
-        panel.imprimirImagen();
+        String ruta = buscarRutaGuardado();
+        panel.imprimirImagen(ruta);
         panel.dispose();
+    }
+    
+    private String buscarRutaGuardado() {
+        JFileChooser menu = new JFileChooser();
+        menu.setDialogType(JFileChooser.FILES_AND_DIRECTORIES);
+        int respuesta = menu.showSaveDialog(null);
+        String ruta = "";
+        if (respuesta == JFileChooser.APPROVE_OPTION) {
+            ruta = menu.getSelectedFile().getPath();
+        }
+        return ruta;
     }
     
     public void limpiarCampos() {
@@ -97,16 +128,19 @@ public class PanelRecetasPaciente extends javax.swing.JPanel {
     }
     
     public void activarCampos() {
+        btImprimir.setEnabled(true);
         txtReceta.setEnabled(true);
         txtIndicaciones.setEnabled(true);
     }
     
     public void desactivarCampos() {
+        btImprimir.setEnabled(false);
         txtReceta.setEnabled(false);
         txtIndicaciones.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btImprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

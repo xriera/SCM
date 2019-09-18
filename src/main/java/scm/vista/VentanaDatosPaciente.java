@@ -14,7 +14,6 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
 
     private Paciente paciente;
     private String accion;
-    private String panelActual;
     
     public VentanaDatosPaciente() {
         initComponents();
@@ -267,6 +266,9 @@ public class VentanaDatosPaciente extends javax.swing.JFrame {
             }
         }
         datosConsulta.guardarCambiosConsulta(accion, datosReceta);
+        datosCitas.limpiarTabla();
+        datosCitas.setDatosCita(paciente.getCedula());
+        accion = "busqueda";
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void tbPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPanelMouseClicked
